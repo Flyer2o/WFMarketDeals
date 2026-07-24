@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WFM Deal Scanner</title>
+<style>
+  :root {
+    --bg: #0f1115; --card: #181b22; --card2: #1f232d; --line: #2a2f3a;
+    --text: #d7dae0; --dim2: #6b7280;
+    --gold: #d4af37; --cyan: #3fc1c9; --orange: #e8871e; --green: #6fcf7f;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 14px/1.45 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .num { font-variant-numeric: tabular-nums; }
+  header { display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+           padding: 12px 18px; border-bottom: 1px solid var(--line);
+           position: sticky; top: 0; background: var(--bg); z-index: 5; }
+  header h1 { font-size: 16px; margin: 0 14px 0 0; color: var(--gold);
+              letter-spacing: .5px; }
+  .pill { background: var(--card); border: 1px solid var(--line);
+          border-radius: 20px; padding: 3px 12px; font-size: 12px;
+          color: var(--dim2); }
+  .pill b { color: var(--text); font-weight: 600; }
+  /* fixed width so the header doesn't reflow as the scanned item name changes */
+  #p-phase { display: inline-block; width: 210px; overflow: hidden;
+             text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom; }
+  .spacer { flex: 1; }
+  button { background: var(--card2); color: var(--text); border: 1px solid var(--line);
+           border-radius: 6px; padding: 5px 12px; cursor: pointer; font-size: 13px; }
+  button:hover { border-color: var(--gold); }
+  button.primary { background: var(--gold); color: #14161b; border: none;
+                   font-weight: 600; }
+  nav { display: flex; gap: 4px; padding: 10px 18px 0; }
+  nav button { border-radius: 8px 8px 0 0; border-bottom: none; padding: 7px 16px; }
+  nav button.active { background: var(--card); color: var(--gold); }
+  main { padding: 14px 18px 40px; max-width: 1100px; margin: 0 auto; }
+  .tab { display: none; } .tab.active { display: block; }
+  .chips { display: flex; gap: 6px; margin: 4px 0 12px; flex-wrap: wrap; }
+  .chip { border-radius: 16px; padding: 3px 12px; font-size: 12px; cursor: pointer;
+          background: var(--card); border: 1px solid var(--line); color: var(--dim2); }
+  .chip.active { color: var(--gold); border-color: var(--gold); }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase;
+       letter-spacing: .8px; color: var(--dim2); padding: 6px 10px;
+       border-bottom: 1px solid var(--line); }
+  td { padding: 7px 10px; border-bottom: 1px solid #20242e; vertical-align: top; }
+  tr:hover td { background: #1b1f28; }
+  .badge { font-size: 10px; font-weight: 700; letter-spacing: .8px;
+           padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
+  .badge.snipe { background: #3a3010; color: var(--gold); }
+  .badge.flip  { background: #103436; color: var(--cyan); }
+  .badge.dip   { background: #3a2410; color: var(--orange); }
+  .badge.target { background: #241a3a; color: #b48ce8; }
+  .m-pos { color: var(--green); font-weight: 600; }
+  .m-neg { color: var(--cyan); font-weight: 600; }
+  .wl-target { width: 92px; }
+  .baro { color: var(--gold); font-size: 15px; font-weight: 600; }
+  .baro.here { color: var(--green); }
+  a.pill { text-decoration: none; }
+  .twitch { border-color: #9147ff; color: #b98cff; }
+  .twitch.live { background: #9147ff; color: #fff; border-color: #9147ff;
+                 animation: glow 2s ease-in-out infinite; }
+  .ware-untradeable td { opacity: .5; }
+  .val-hot { color: var(--green); font-weight: 700; }
+  .val-ok { color: var(--gold); }
+  @media (prefers-reduced-motion: reduce) { .twitch.live { animation: none; } }
+  .badge.jackpot { background: linear-gradient(135deg, #f6d365, #d4af37);
+                   color: #14161b; animation: glow 1.6s ease-in-out infinite; }
+  tr.jackpot-row td { background: linear-gradient(90deg,
+                      rgba(212,175,55,.12), transparent 55%); }
+  tr.jackpot-row td:first-child { border-left: 3px solid var(--gold); }
+  tr.jackpot-row:hover td { background: linear-gradient(90deg,
+                            rgba(212,175,55,.18), transparent 55%); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+         display: inline-block; margin-right: 5px; vertical-align: middle;
+         animation: blink 1.4s ease-in-out infinite; }
+  .jackpot-pill { border-color: var(--gold); color: var(--gold);
+                  box-shadow: 0 0 10px rgba(212,175,55,.35); }
+  button.muted { color: var(--orange); border-color: var(--orange); }
+  @keyframes glow { 0%,100% { box-shadow: 0 0 5px rgba(212,175,55,.5); }
+                    50% { box-shadow: 0 0 15px rgba(212,175,55,.95); } }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+  @media (prefers-reduced-motion: reduce) {
+    .badge.jackpot, .dot { animation: none; } }
+  .price { color: var(--gold); font-weight: 700; }
+  .pct { color: var(--green); font-weight: 600; }
+  .dim { color: var(--dim2); font-size: 12px; }
+  .verified { color: var(--green); font-size: 10px; margin-top: 2px;
+              white-space: nowrap; }
+  a.wfm-link { color: inherit; text-decoration: none;
+               border-bottom: 1px dotted var(--dim2); }
+  a.wfm-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+  a.wfm-link::after { content: " ↗"; font-size: 10px; color: var(--dim2); }
+  #hidden-hint.clickable { cursor: pointer; text-decoration: underline; }
+  #hidden-hint.clickable:hover { color: var(--gold); }
+  .toolbar { display: flex; gap: 10px; align-items: center; margin: 4px 0 12px; }
+  .toolbar input { max-width: 340px; }
+  thead th { position: sticky; top: 56px; background: var(--bg); z-index: 2; }
+  th.sortable { cursor: pointer; user-select: none; }
+  th.sortable:hover { color: var(--gold); }
+  th.sortable.sorted::after { content: " ▾"; color: var(--gold); }
+  th.sortable.sorted.asc::after { content: " ▴"; }
+  .dash-h { font-size: 13px; text-transform: uppercase; letter-spacing: .8px;
+            color: var(--dim2); margin: 22px 0 8px; font-weight: 600; }
+  .dash-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .dash-cols { grid-template-columns: 1fr; } }
+  .stats .stat b { display: block; }
+  kbd { background: var(--card2); border: 1px solid var(--line); border-radius: 4px;
+        padding: 1px 6px; font-size: 11px; color: var(--text); }
+  .seller-status { font-size: 11px; margin-top: 2px; }
+  .seller-status.ingame { color: var(--green); }
+  .seller-status.online { color: var(--orange); }
+  #p-stream.live { color: var(--green); }
+  tr.gone td { opacity: .45; }
+  tr.gone .price { text-decoration: line-through; }
+  .gone-note { color: var(--dim2); font-size: 11px; }
+  .note { color: var(--orange); font-size: 12px; }
+  .empty { color: var(--dim2); text-align: center; padding: 50px 0; }
+  input[type=text], input[type=number] {
+    background: var(--card); border: 1px solid var(--line); color: var(--text);
+    border-radius: 6px; padding: 7px 10px; font-size: 14px; width: 100%; }
+  .search-wrap { position: relative; max-width: 420px; }
+  .results { position: absolute; top: 38px; left: 0; right: 0; background: var(--card2);
+             border: 1px solid var(--line); border-radius: 6px; z-index: 10;
+             max-height: 300px; overflow: auto; }
+  .results div { padding: 7px 12px; cursor: pointer; }
+  .results div:hover { background: #262b36; color: var(--gold); }
+  .itemhead { display: flex; align-items: baseline; gap: 14px; margin: 18px 0 6px;
+              flex-wrap: wrap; }
+  .itemhead h2 { margin: 0; font-size: 20px; color: var(--gold); }
+  canvas { width: 100%; height: 260px; background: var(--card); border-radius: 8px;
+           border: 1px solid var(--line); margin-top: 10px; }
+  #dash-chart { height: 140px; }
+  .stats { display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+          padding: 8px 16px; }
+  .stat .dim { display: block; }
+  .stat b { font-size: 18px; }
+  form.settings { display: grid; grid-template-columns: 240px 200px; gap: 10px 16px;
+                  align-items: center; max-width: 520px; }
+  form.settings label { color: var(--dim2); }
+  .saved { color: var(--green); margin-left: 12px; }
+  .wl-row { display: flex; align-items: center; gap: 10px; padding: 8px 4px;
+            border-bottom: 1px solid #20242e; max-width: 520px; }
+  .wl-row span { flex: 1; }
+</style>
+</head>
+<body>
+<div id="js-guard" style="background:#3a2410;color:#e8871e;padding:10px 18px;
+     font:14px -apple-system,'Segoe UI',sans-serif">
+  ⚠ This is a static preview of the interface file — nothing here is clickable.
+  The running app lives at <b>http://127.0.0.1:8737</b> (this banner disappears there).
+</div>
+<header>
+  <h1>WFM DEAL SCANNER</h1>
+  <span class="pill"><span class="dot" id="scan-dot"></span><span id="p-phase">starting…</span></span>
+  <span class="pill">sweep <b class="num" id="p-sweep">–</b></span>
+  <span class="pill">market <b class="num" id="p-progress">–</b></span>
+  <span class="pill"><b class="num" id="p-rpm">0</b> req/min</span>
+  <span class="pill" title="live order feed from warframe.market">⚡ <b id="p-stream">off</b></span>
+  <span class="pill">deals 24h <b class="num" id="p-deals">0</b></span>
+  <span class="pill jackpot-pill" id="p-jack" hidden>⭐ <b class="num" id="p-jack-n">0</b> jackpots</span>
+  <a class="pill twitch" id="p-twitch" href="https://www.twitch.tv/warframe"
+     target="_blank" rel="noopener" hidden></a>
+  <span class="spacer"></span>
+  <button id="btn-mute" title="master switch for all alerts">🔔 alerts on</button>
+  <button id="btn-sound" title="alert beep in this tab">sound: on</button>
+  <button id="btn-notif">enable notifications</button>
+</header>
+
+<nav>
+  <button data-tab="feed" class="active">Feed</button>
+  <button data-tab="dash">Dashboard</button>
+  <button data-tab="items">Items</button>
+  <button data-tab="sets">Sets</button>
+  <button data-tab="baro">Baro</button>
+  <button data-tab="ducats">Ducats</button>
+  <button data-tab="watchlist">Watchlist</button>
+  <button data-tab="settings">Settings</button>
+</nav>
+
+<main>
+  <section class="tab active" id="tab-feed">
+    <div class="chips" id="kind-chips">
+      <span class="chip active" data-kind="">All</span>
+      <span class="chip" data-kind="jackpot">⭐ Jackpots</span>
+      <span class="chip" data-kind="snipe">Snipes</span>
+      <span class="chip" data-kind="flip">Flips</span>
+      <span class="chip" data-kind="target">Targets</span>
+      <span class="chip" data-kind="dip">Dips</span>
+      <span class="chip" id="chip-gone" style="margin-left:auto">show sold/expired</span>
+    </div>
+    <div class="chips" id="cat-chips">
+      <span class="chip active" data-cat="">All items</span>
+      <span class="chip" data-cat="arcane">💠 Arcanes</span>
+      <span class="chip" data-cat="prime">Primes</span>
+      <span class="chip" data-cat="mod">Mods</span>
+      <span class="chip" data-cat="weapon">Weapons</span>
+      <span class="chip" data-cat="relic">Relics</span>
+      <span class="chip" data-cat="other">Other</span>
+    </div>
+    <div class="toolbar">
+      <input type="text" id="feed-search" placeholder="filter deals by item or seller…  (press /)"
+             autocomplete="off">
+      <button id="feed-export" title="download the deals you're looking at">export CSV</button>
+      <span class="dim" id="feed-count"></span>
+    </div>
+    <table>
+      <thead><tr>
+        <th class="sortable" data-sort="ts">when</th>
+        <th>kind</th>
+        <th class="sortable" data-sort="name">item</th>
+        <th class="sortable" data-sort="price">price</th>
+        <th class="sortable" data-sort="pct">vs market</th>
+        <th>seller</th><th></th></tr></thead>
+      <tbody id="feed-body"></tbody>
+    </table>
+    <div class="empty" id="feed-empty">No deals yet — the scanner is sweeping the market.
+      Alerts appear here the moment something underpriced is listed.</div>
+    <p class="dim" id="hidden-hint"></p>
+  </section>
+
+  <section class="tab" id="tab-dash">
+    <div class="stats" id="dash-tiles"></div>
+    <h3 class="dash-h">Deals caught per hour <span class="dim">(last 24 h)</span></h3>
+    <canvas id="dash-chart" width="1060" height="140"></canvas>
+    <div class="dash-cols">
+      <div>
+        <h3 class="dash-h">Biggest catches today</h3>
+        <table><tbody id="dash-best"></tbody></table>
+      </div>
+      <div>
+        <h3 class="dash-h">Most active items</h3>
+        <table><tbody id="dash-busy"></tbody></table>
+      </div>
+    </div>
+    <h3 class="dash-h">Breakdown</h3>
+    <div class="stats" id="dash-breakdown"></div>
+  </section>
+
+  <section class="tab" id="tab-items">
+    <div class="search-wrap">
+      <input type="text" id="item-search" placeholder="Search any tradeable item…"
+             autocomplete="off">
+      <div class="results" id="item-results" hidden></div>
+    </div>
+    <div id="item-view" hidden>
+      <div class="itemhead">
+        <h2 id="iv-name"></h2>
+        <a id="iv-market" class="wfm-link" target="_blank" rel="noopener"
+           hidden>warframe.market</a>
+        <button id="iv-scan">refresh</button>
+        <button id="iv-watch">+ watchlist</button>
+      </div>
+      <div class="chips" id="iv-buckets"></div>
+      <div class="stats" id="iv-stats"></div>
+      <canvas id="iv-chart" width="1060" height="260"></canvas>
+      <p class="dim">gold = cheapest in-game listing · grey = market reference ·
+        teal = best buy order · history accumulates as the scanner runs</p>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-sets">
+    <p class="dim">Prime-set arbitrage — cheapest in-game <b>set</b> listing vs the sum of its
+      <b>parts</b> (quantities included, e.g. Ak-weapons needing ×2). Positive margin:
+      buy the parts, sell the set. Negative: buying the set and selling the parts pays more.
+      Margins marked <span class="dim">unverified</span> are computed from older
+      prices and are being re-checked live — don't trade on them until the label
+      clears, because a stale margin can be inverted.
+      <span id="sets-note"></span></p>
+    <table>
+      <thead><tr><th>set</th><th>set price</th><th>parts total</th>
+        <th>opportunity</th><th>data age</th><th></th></tr></thead>
+      <tbody id="sets-body"></tbody>
+    </table>
+  </section>
+
+  <section class="tab" id="tab-baro">
+    <p class="baro" id="baro-line2"></p>
+    <p class="dim">What Baro is selling right now, joined with live market prices.
+      <b>p/100d</b> is what 100 ducats buys you in platinum terms — the higher the
+      number, the better the ducat value. A gold or green <b>market</b> price means
+      the item is also underpriced on warframe.market right now, so you can buy it
+      there instead of spending ducats. Cosmetics and untradeable wares are listed
+      greyed out for completeness.</p>
+    <table>
+      <thead><tr><th>ware</th><th>ducats</th><th>credits</th><th>market now</th>
+        <th>value</th><th>age</th><th>deal on WFM</th><th></th></tr></thead>
+      <tbody id="baro-body"></tbody>
+    </table>
+  </section>
+
+  <section class="tab" id="tab-ducats">
+    <p class="baro" id="baro-line"></p>
+    <p class="dim">Ducat shopping for Baro Ki'Teer — prime items ranked by
+      <b>ducats per platinum</b> at the current cheapest in-game listing.
+      Anything ≥ <span class="m-pos">12 d/p</span> is good fodder,
+      ≥ 20 is excellent. Prices come from the scanner's latest pass;
+      refresh a row for live numbers.</p>
+    <table>
+      <thead><tr><th>item</th><th>price</th><th>ducats</th>
+        <th>ducats / plat</th><th>sellers</th><th>data age</th><th></th></tr></thead>
+      <tbody id="ducats-body"></tbody>
+    </table>
+  </section>
+
+  <section class="tab" id="tab-watchlist">
+    <p class="dim">Watchlist items are re-checked every fast-lane interval
+      (default 60 s) instead of waiting for the full market sweep.</p>
+    <div class="search-wrap">
+      <input type="text" id="wl-search" placeholder="Add an item…" autocomplete="off">
+      <div class="results" id="wl-results" hidden></div>
+    </div>
+    <div id="wl-list" style="margin-top:14px"></div>
+  </section>
+
+  <section class="tab" id="tab-settings">
+    <form class="settings" id="cfg-form">
+      <label>min discount (0.30 = 30%)</label><input type="number" step="0.05" name="min_discount">
+      <label>min savings (plat)</label><input type="number" name="min_savings">
+      <label>min market price (plat)</label><input type="number" name="min_price">
+      <label>in-game sellers only (off = in-game + online)</label><input type="checkbox" name="only_ingame">
+      <label>fast-lane interval (s)</label><input type="number" name="fast_interval">
+      <label>request delay (s)</label><input type="number" step="0.1" name="request_delay">
+      <label>flip min profit (plat)</label><input type="number" name="flip_min_profit">
+      <label>jackpot: fraction below market</label><input type="number" step="0.05" name="jackpot_discount">
+      <label>jackpot: fraction below next seller</label><input type="number" step="0.05" name="jackpot_gap">
+      <label>notify jackpots</label><input type="checkbox" name="notify_jackpots">
+      <label>notify snipes</label><input type="checkbox" name="notify_snipes">
+      <label>notify flips</label><input type="checkbox" name="notify_flips">
+      <label>notify price targets</label><input type="checkbox" name="notify_targets">
+      <label>notify Baro arrival / last call</label><input type="checkbox" name="notify_baro">
+      <label>notify Warframe Twitch live</label><input type="checkbox" name="notify_twitch">
+      <label>notify dips</label><input type="checkbox" name="notify_dips">
+      <label>Discord webhook URL</label><input type="text" name="discord_webhook">
+    </form>
+    <p><button class="primary" id="cfg-save">Save settings</button>
+       <span class="saved" id="cfg-saved" hidden>saved ✓</span></p>
+    <p class="dim">Changes apply live — no restart needed. The database
+      (wfm_market.db) keeps 30 days of price history automatically.</p>
+    <p class="dim">Shortcuts: <kbd>1</kbd>–<kbd>8</kbd> switch tabs ·
+      <kbd>/</kbd> search the feed · <kbd>c</kbd> copy the newest whisper ·
+      <kbd>m</kbd> mute or unmute alerts · <kbd>Esc</kbd> clear the search.</p>
+  </section>
+</main>
+
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+$("#js-guard").remove();  // script is running: not the static file preview
+const api = (path, opts) => fetch(path, opts).then(r => r.json());
+const BASE_TITLE = "WFM Deal Scanner";
+
+/* ---------- notification preferences (mirrors server config) ---------- */
+let prefs = { mute_all: false, notify_snipes: true, notify_jackpots: true,
+              notify_flips: true, notify_dips: false };
+async function loadPrefs() {
+  try { prefs = Object.assign(prefs, await api("/api/config")); } catch (e) {}
+  updateMuteBtn();
+}
+function updateMuteBtn() {
+  const b = $("#btn-mute");
+  b.textContent = prefs.mute_all ? "🔕 muted" : "🔔 alerts on";
+  b.classList.toggle("muted", prefs.mute_all);
+}
+$("#btn-mute").onclick = async () => {
+  prefs.mute_all = !prefs.mute_all;
+  updateMuteBtn();
+  await api("/api/config", { method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ mute_all: prefs.mute_all }) });
+};
+
+/* ---------- tabs ---------- */
+document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("nav button").forEach(x => x.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+  b.classList.add("active");
+  $("#tab-" + b.dataset.tab).classList.add("active");
+  if (b.dataset.tab === "watchlist") loadWatchlist();
+  if (b.dataset.tab === "settings") loadConfig();
+  if (b.dataset.tab === "sets") loadSets();
+  if (b.dataset.tab === "ducats") loadDucats();
+  if (b.dataset.tab === "baro") loadBaro();
+  if (b.dataset.tab === "dash") loadDash();
+});
+
+/* ---------- status bar ---------- */
+async function pollStatus() {
+  try {
+    const s = await api("/api/status");
+    $("#p-phase").textContent = s.phase + (s.last_item ? ": " + s.last_item : "");
+    $("#p-sweep").textContent = s.sweep;
+    $("#p-progress").textContent = s.total
+      ? Math.round(100 * s.position / s.total) + "%" : "–";
+    $("#p-rpm").textContent = s.req_per_min;
+    const stream = $("#p-stream");
+    stream.textContent = s.stream === "live" && s.queue > 0
+      ? "live · " + s.queue + " queued" : s.stream;
+    stream.classList.toggle("live", s.stream === "live");
+    $("#p-deals").textContent = s.deals_24h;
+    const jp = $("#p-jack");
+    jp.hidden = !(s.jackpots_24h > 0);
+    if (s.jackpots_24h > 0) $("#p-jack-n").textContent = s.jackpots_24h;
+    $("#scan-dot").style.background = s.phase === "scanning"
+      ? "var(--green)" : "var(--dim2)";
+  } catch (e) { $("#p-phase").textContent = "server unreachable"; }
+}
+
+/* ---------- notifications + sound ---------- */
+let soundOn = localStorage.getItem("wfm-sound") !== "off";
+$("#btn-sound").textContent = "sound: " + (soundOn ? "on" : "off");
+$("#btn-sound").onclick = () => {
+  soundOn = !soundOn;
+  localStorage.setItem("wfm-sound", soundOn ? "on" : "off");
+  $("#btn-sound").textContent = "sound: " + (soundOn ? "on" : "off");
+};
+let desktopOn = localStorage.getItem("wfm-desktop") !== "off";
+function desktopActive() {
+  return desktopOn && "Notification" in window
+         && Notification.permission === "granted";
+}
+function refreshNotifBtn() {
+  const b = $("#btn-notif");
+  if (!("Notification" in window)) { b.hidden = true; return; }
+  if (Notification.permission === "denied") {
+    b.textContent = "notifications blocked by browser";
+    b.classList.add("muted");
+    b.title = "Allow notifications for this site in your browser settings";
+    return;
+  }
+  b.classList.remove("muted");
+  b.title = "toggle desktop notifications";
+  b.textContent = "notifications: " + (desktopActive() ? "on" : "off");
+}
+$("#btn-notif").onclick = async () => {
+  if (Notification.permission === "denied") { refreshNotifBtn(); return; }
+  if (desktopActive()) {
+    desktopOn = false;
+  } else {
+    desktopOn = true;
+    if (Notification.permission !== "granted") {
+      await Notification.requestPermission();
+    }
+  }
+  localStorage.setItem("wfm-desktop", desktopOn ? "on" : "off");
+  refreshNotifBtn();
+};
+refreshNotifBtn();
+
+let audioCtx = null;  // one shared context — browsers cap concurrent ones,
+                      // so creating a new context per beep kills sound over time
+// autoplay policy: audio stays suspended until a user gesture unlocks it
+document.addEventListener("click", () => {
+  if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
+}, { passive: true });
+function tones(notes, type) {
+  if (!soundOn) return;
+  try {
+    if (!audioCtx || audioCtx.state === "closed") {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === "suspended") audioCtx.resume();
+    const ctx = audioCtx;
+    for (const [f, t] of notes) {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type || "sine"; o.frequency.value = f;
+      o.connect(g); g.connect(ctx.destination);
+      g.gain.setValueAtTime(0.0001, ctx.currentTime + t);
+      g.gain.exponentialRampToValueAtTime(0.1, ctx.currentTime + t + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + t + 0.28);
+      o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + 0.3);
+    }
+  } catch (e) {}
+}
+const beep = () => tones([[880, 0], [1320, 0.12]]);
+const jackpotSound = () =>
+  tones([[523, 0], [659, 0.09], [784, 0.18], [1047, 0.27]], "triangle");
+
+let titleTimer = null;
+function flashTitle(n) {
+  document.title = "⭐ " + n + " JACKPOT" + (n > 1 ? "S" : "") + "!";
+  clearTimeout(titleTimer);
+  titleTimer = setTimeout(() => document.title = BASE_TITLE, 8000);
+}
+window.addEventListener("focus", () => document.title = BASE_TITLE);
+
+/* ---------- deal feed ---------- */
+let kindFilter = "", maxSeenId = null, deals = [];
+let catFilter = localStorage.getItem("wfm-cat") || "";
+let showGone = false;
+$("#hidden-hint").onclick = () => {
+  if (!$("#hidden-hint").classList.contains("clickable")) return;
+  kindFilter = ""; catFilter = "";
+  localStorage.setItem("wfm-cat", "");
+  document.querySelectorAll("#kind-chips .chip[data-kind]").forEach(c =>
+    c.classList.toggle("active", c.dataset.kind === ""));
+  document.querySelectorAll("#cat-chips .chip").forEach(c =>
+    c.classList.toggle("active", c.dataset.cat === ""));
+  renderFeed();
+};
+$("#chip-gone").onclick = () => {
+  showGone = !showGone;
+  $("#chip-gone").classList.toggle("active", showGone);
+  renderFeed();
+};
+document.querySelectorAll("#kind-chips .chip[data-kind]").forEach(c => c.onclick = () => {
+  document.querySelectorAll("#kind-chips .chip[data-kind]").forEach(x => x.classList.remove("active"));
+  c.classList.add("active");
+  kindFilter = c.dataset.kind;
+  renderFeed();
+});
+document.querySelectorAll("#cat-chips .chip").forEach(c => {
+  if (c.dataset.cat === catFilter) {
+    document.querySelectorAll("#cat-chips .chip").forEach(x => x.classList.remove("active"));
+    c.classList.add("active");
+  }
+  c.onclick = () => {
+    document.querySelectorAll("#cat-chips .chip").forEach(x => x.classList.remove("active"));
+    c.classList.add("active");
+    catFilter = c.dataset.cat;
+    localStorage.setItem("wfm-cat", catFilter);
+    renderFeed();
+  };
+});
+
+function ago(ts) {
+  const s = Math.max(0, Date.now() / 1000 - ts);
+  if (s < 90) return Math.round(s) + "s ago";
+  if (s < 5400) return Math.round(s / 60) + "m ago";
+  if (s < 172800) return Math.round(s / 3600) + "h ago";
+  return Math.round(s / 86400) + "d ago";
+}
+
+/* every item links out to its warframe.market page — that's where you
+   confirm the listing and message the seller */
+function wfmAnchor(slug, text, cls) {
+  const a = document.createElement("a");
+  a.href = "https://warframe.market/items/" + encodeURIComponent(slug);
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.className = cls || "wfm-link";
+  a.textContent = text;
+  a.title = "open " + text + " on warframe.market";
+  return a;
+}
+
+function copyText(text) {
+  // clipboard API needs a secure context; fall back for LAN (http://192.…) use
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => copyFallback(text));
+  } else copyFallback(text);
+}
+function copyFallback(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.cssText = "position:fixed;opacity:0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (e) {}
+  ta.remove();
+}
+
+function td(parent, text, cls) {
+  const el = document.createElement("td");
+  if (cls) el.className = cls;
+  el.textContent = text;
+  parent.appendChild(el);
+  return el;
+}
+
+/* free-text filter + column sorting over the feed */
+let feedQuery = "", sortKey = "", sortAsc = false;
+$("#feed-search").addEventListener("input", e => {
+  feedQuery = e.target.value.trim().toLowerCase();
+  renderFeed();
+});
+document.querySelectorAll("th.sortable").forEach(th => th.onclick = () => {
+  const key = th.dataset.sort;
+  sortAsc = sortKey === key ? !sortAsc : (key === "name");
+  sortKey = key;
+  document.querySelectorAll("th.sortable").forEach(x => {
+    x.classList.toggle("sorted", x === th);
+    x.classList.toggle("asc", x === th && sortAsc);
+  });
+  renderFeed();
+});
+$("#feed-export").onclick = () => {
+  const rows = visibleDeals();
+  const head = ["when", "kind", "item", "rank", "price", "market", "discount_pct",
+                "seller", "seller_status", "note", "url"];
+  const csv = [head.join(",")].concat(rows.map(d => [
+    new Date(d.ts * 1000).toISOString(), d.kind, d.name, d.rank ?? "",
+    d.price, Math.round(d.reference), d.pct, d.seller || "", d.status || "",
+    (d.note || "").replace(/,/g, ";"),
+    d.slug ? "https://warframe.market/items/" + d.slug : "",
+  ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(","))).join("\n");
+  const url = URL.createObjectURL(new Blob([csv], {type: "text/csv"}));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "wfm-deals-" + new Date().toISOString().slice(0, 16).replace(":", "") + ".csv";
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+function visibleDeals() {
+  let rows = deals.filter(d => (!kindFilter || d.kind === kindFilter)
+                            && (!catFilter || d.category === catFilter)
+                            && (showGone || !d.gone_ts));
+  if (feedQuery) {
+    rows = rows.filter(d => (d.name + " " + (d.seller || "")).toLowerCase()
+                             .includes(feedQuery));
+  }
+  if (sortKey) {
+    const dir = sortAsc ? 1 : -1;
+    rows = [...rows].sort((a, b) => {
+      const x = a[sortKey], y = b[sortKey];
+      return (typeof x === "string" ? x.localeCompare(y) : x - y) * dir;
+    });
+  }
+  return rows;
+}
+
+let feedKey = "";
+function renderFeed() {
+  const rows = visibleDeals();
+  // distinguish "your filters hid these" (fixable with one click) from
+  // "these listings are gone" (a different chip) — vague hints confused me before
+  const live = deals.filter(d => !d.gone_ts);
+  const byFilter = live.length - live.filter(d =>
+    (!kindFilter || d.kind === kindFilter) &&
+    (!catFilter || d.category === catFilter)).length;
+  const goneHidden = showGone ? 0 : deals.length - live.length;
+  const hint = byFilter > 0
+    ? byFilter + " deals hidden by the filters above — click to clear them"
+    : goneHidden > 0
+      ? goneHidden + ' sold or expired deals hidden ("show sold/expired" to see them)'
+      : "";
+  const hintEl = $("#hidden-hint");
+  if (hintEl.textContent !== hint) hintEl.textContent = hint;
+  hintEl.classList.toggle("clickable", byFilter > 0);
+  const count = rows.length + (rows.length === 1 ? " deal" : " deals")
+              + (feedQuery ? ' matching "' + feedQuery + '"' : "");
+  if ($("#feed-count").textContent !== count) $("#feed-count").textContent = count;
+  // Rebuild the table only when the visible deals actually changed;
+  // otherwise just refresh the "x ago" texts in place. Rebuilding every
+  // poll makes the page visibly shift and resets hover/scroll state.
+  const key = kindFilter + "|" + catFilter + "|" + showGone + "|"
+            + rows.map(d => d.id + (d.gone_ts ? "g" : "")).join(",");
+  if (key === feedKey) {
+    // no structural change: refresh "ago" texts and verified badges in place
+    const byId = new Map(deals.map(d => [String(d.id), d]));
+    document.querySelectorAll("#feed-body tr").forEach(tr => {
+      const w = tr.querySelector("td.when");
+      if (!w) return;
+      const t = ago(+w.dataset.ts);
+      if (w.firstChild.nodeValue !== t) w.firstChild.nodeValue = t;
+      const v = tr.querySelector(".verified"), d = byId.get(tr.dataset.id);
+      if (v && d) {
+        const vt = d.checked_ts && !d.gone_ts ? "✓ " + ago(d.checked_ts) : "";
+        if (v.textContent !== vt) v.textContent = vt;
+      }
+    });
+    return;
+  }
+  feedKey = key;
+  const body = $("#feed-body");
+  body.replaceChildren();
+  $("#feed-empty").style.display = rows.length ? "none" : "block";
+  for (const d of rows) {
+    const tr = document.createElement("tr");
+    if (d.kind === "jackpot") tr.className = "jackpot-row";
+    if (d.gone_ts) tr.className += " gone";
+    tr.dataset.id = d.id;
+    const when = td(tr, ago(d.ts), "dim num when");
+    when.dataset.ts = d.ts;
+    const ver = document.createElement("div");
+    ver.className = "verified";
+    ver.textContent = d.checked_ts && !d.gone_ts ? "✓ " + ago(d.checked_ts) : "";
+    when.appendChild(ver);
+    const badge = document.createElement("span");
+    badge.className = "badge " + d.kind;
+    badge.textContent = d.kind === "jackpot" ? "★ jackpot" : d.kind;
+    td(tr, "", "").appendChild(badge);
+    const variant = d.rank !== null ? " (rank " + d.rank + ")"
+                  : d.subtype ? " (" + d.subtype + ")" : "";
+    const itemCell = td(tr, "", "");
+    itemCell.appendChild(d.slug ? wfmAnchor(d.slug, d.name + variant)
+                                : document.createTextNode(d.name + variant));
+    if (d.note) {
+      const n = document.createElement("div");
+      n.className = "note"; n.textContent = d.note;
+      itemCell.appendChild(n);
+    }
+    if (d.gone_ts) {
+      const g = document.createElement("div");
+      g.className = "gone-note";
+      const mins = Math.max(1, Math.round((d.gone_ts - d.ts) / 60));
+      g.textContent = "✕ sold or changed after " +
+        (mins < 90 ? mins + "m" : Math.round(mins / 60) + "h");
+      itemCell.appendChild(g);
+    }
+    td(tr, d.price + "p", "price num");
+    td(tr, Math.round(d.reference) + "p  (−" + d.pct + "%)", "pct num");
+    const sellerCell = td(tr, d.seller || "—", "dim");
+    if (d.seller && d.status) {
+      const st = document.createElement("div");
+      st.className = "seller-status " + d.status;
+      st.textContent = d.status === "ingame" ? "● in game" : "● online (site)";
+      sellerCell.appendChild(st);
+    }
+    const actions = td(tr, "", "");
+    if (d.whisper) {
+      const b = document.createElement("button");
+      b.textContent = "copy whisper";
+      b.onclick = () => {
+        copyText(d.whisper);
+        b.textContent = "copied ✓";
+        setTimeout(() => b.textContent = "copy whisper", 1500);
+      };
+      actions.appendChild(b);
+    }
+    body.appendChild(tr);
+  }
+}
+
+let dealsBusy = false, dealsPending = false, dealRev = null;
+let syncBytes = 0, syncCalls = 0;
+async function pollDeals() {
+  // never let two fetches race (SSE push + timer): newest data must win
+  if (dealsBusy) { dealsPending = true; return; }
+  dealsBusy = true;
+  try {
+    // after the first load we only ask for rows that changed — the full feed
+    // is ~90 KB, an incremental tick is usually a few hundred bytes
+    const url = dealRev === null
+      ? "/api/deals?limit=200"
+      : "/api/deals?since_rev=" + dealRev + "&limit=500";
+    const res = await fetch(url);
+    const text = await res.text();
+    syncBytes += text.length; syncCalls++;
+    const payload = JSON.parse(text);
+    if (!payload || !Array.isArray(payload.deals)) return;
+    if (payload.full) {
+      deals = payload.deals;
+    } else if (payload.deals.length) {
+      const byId = new Map(deals.map(d => [d.id, d]));
+      for (const d of payload.deals) byId.set(d.id, d);
+      deals = [...byId.values()].sort((a, b) => b.id - a.id).slice(0, 400);
+    }
+    dealRev = payload.rev;
+  } catch (e) { return; }
+  finally {
+    setTimeout(() => {
+      dealsBusy = false;
+      if (dealsPending) { dealsPending = false; pollDeals(); }
+    }, 0);
+  }
+  if (deals.length) {
+    const newest = deals[0].id;
+    if (maxSeenId !== null && newest > maxSeenId) {
+      const kindOn = { snipe: prefs.notify_snipes, jackpot: prefs.notify_jackpots,
+                       flip: prefs.notify_flips, dip: prefs.notify_dips,
+                       target: prefs.notify_targets };
+      const fresh = deals.filter(d => d.id > maxSeenId && !d.gone_ts
+                                 && !prefs.mute_all && kindOn[d.kind] !== false);
+      const jackpots = fresh.filter(d => d.kind === "jackpot");
+      if (fresh.length) {
+        jackpots.length ? jackpotSound() : beep();
+        if (jackpots.length) flashTitle(jackpots.length);
+        if (desktopActive()) {
+          for (const d of fresh.slice(0, 4)) {
+            const variant = d.rank !== null ? " (rank " + d.rank + ")" : "";
+            const head = d.kind === "jackpot" ? "⭐ JACKPOT — " : "[" + d.kind + "] ";
+            const who = d.seller ? " — seller " + d.seller
+              + (d.status && d.status !== "ingame" ? " (" + d.status + ")" : "") : "";
+            try {
+              new Notification(head + d.name + variant + ": " + d.price + "p",
+                { body: (d.note ? d.note + " · " : "") + "market ~"
+                        + Math.round(d.reference) + "p (−" + d.pct + "%)" + who,
+                  requireInteraction: d.kind === "jackpot" });
+            } catch (e) {}  // some platforms restrict the constructor
+          }
+        }
+      }
+    }
+    maxSeenId = newest;
+  }
+  renderFeed();
+}
+
+/* ---------- item search (shared by Items + Watchlist tabs) ----------
+   The whole catalog (~4k names) is loaded once and filtered locally,
+   so typing costs zero network requests and results are instant. */
+let ITEM_INDEX = null;
+async function ensureIndex() {
+  if (!ITEM_INDEX) {
+    try { ITEM_INDEX = await api("/api/all_items"); } catch (e) { return []; }
+  }
+  return ITEM_INDEX;
+}
+function searchIndex(q, list) {
+  q = q.toLowerCase();
+  const scored = [];
+  for (const it of list) {
+    const n = it.name.toLowerCase();
+    let score = -1;
+    if (n.startsWith(q)) score = 0;
+    else {
+      const i = n.indexOf(q);
+      if (i >= 0) score = n[i - 1] === " " ? 1 : 2;
+    }
+    if (score >= 0) scored.push([score, n.length, it]);
+  }
+  scored.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  return scored.slice(0, 20).map(x => x[2]);
+}
+function wireSearch(inputSel, resultsSel, onPick) {
+  const input = $(inputSel), box = $(resultsSel);
+  input.addEventListener("input", async () => {
+    const q = input.value.trim();
+    if (q.length < 2) { box.hidden = true; return; }
+    const items = searchIndex(q, await ensureIndex());
+    box.replaceChildren();
+    for (const it of items) {
+      const div = document.createElement("div");
+      div.textContent = it.name;
+      if (it.category && it.category !== "other") {
+        const tag = document.createElement("span");
+        tag.className = "dim";
+        tag.textContent = "  · " + (it.category === "arcane" ? "💠 arcane" : it.category);
+        div.appendChild(tag);
+      }
+      div.onclick = () => { box.hidden = true; input.value = ""; onPick(it); };
+      box.appendChild(div);
+    }
+    box.hidden = items.length === 0;
+  });
+  document.addEventListener("click", e => {
+    if (!box.contains(e.target) && e.target !== input) box.hidden = true;
+  });
+}
+
+/* ---------- item detail + chart ---------- */
+let currentItem = null, currentBucket = null, itemData = null, itemLive = null;
+
+wireSearch("#item-search", "#item-results", it => showItem(it.slug));
+
+async function showItem(slug) {
+  currentItem = slug;
+  $("#item-view").hidden = false;
+  $("#iv-name").textContent = "loading live prices…";
+  // history (for the chart) and a live order-book fetch, in parallel
+  let hist, live;
+  try {
+    [hist, live] = await Promise.all([
+      api("/api/item?slug=" + encodeURIComponent(slug)),
+      api("/api/item_live?slug=" + encodeURIComponent(slug)).catch(() => null),
+    ]);
+  } catch (e) {
+    if (currentItem === slug) $("#iv-name").textContent = "couldn't load — is the app still running?";
+    return;
+  }
+  if (currentItem !== slug) return;  // user opened another item meanwhile
+  if (hist.error) return;
+  itemData = hist;
+  itemLive = live && !live.error ? live : null;
+  $("#iv-name").textContent = hist.name;
+  const link = $("#iv-market");
+  link.href = "https://warframe.market/items/" + encodeURIComponent(slug);
+  link.hidden = false;
+  const chips = $("#iv-buckets");
+  chips.replaceChildren();
+  // live buckets come sorted most-valuable-first; append history-only ones
+  const labels = itemLive ? itemLive.buckets.map(b => b.label) : [];
+  for (const l of Object.keys(hist.buckets)) {
+    if (!labels.includes(l)) labels.push(l);
+  }
+  currentBucket = labels[0] || null;
+  for (const label of labels) {
+    const c = document.createElement("span");
+    c.className = "chip" + (label === currentBucket ? " active" : "");
+    c.textContent = label;
+    c.onclick = () => {
+      currentBucket = label;
+      chips.querySelectorAll(".chip").forEach(x => x.classList.remove("active"));
+      c.classList.add("active");
+      renderItem();
+    };
+    chips.appendChild(c);
+  }
+  renderItem();
+}
+
+function renderItem() {
+  const stats = $("#iv-stats");
+  stats.replaceChildren();
+  const rows = (currentBucket && itemData.buckets[currentBucket]) || [];
+  const live = itemLive && itemLive.buckets.find(b => b.label === currentBucket);
+  const last = rows.length ? rows[rows.length - 1] : null;
+  const lows = rows.map(r => r[1]).filter(v => v !== null);
+  // prefer the live order book; fall back to the last stored snapshot
+  const cur = live
+    ? { low: live.low, ref: live.reference, buy: live.buy_high, n: live.sellers }
+    : { low: last && last[1], ref: last && last[2],
+        buy: last && last[3], n: last && last[4] };
+  const pieces = [
+    ["cheapest now", cur.low != null ? cur.low + "p" : "–"],
+    ["market ref", cur.ref ? Math.round(cur.ref) + "p" : "–"],
+    ["best buy order", cur.buy ? cur.buy + "p" : "–"],
+    ["active sellers", cur.n != null ? cur.n : "–"],
+    ["30d low", lows.length ? Math.min(...lows) + "p" : "–"],
+  ];
+  if (itemData.ducats) {
+    pieces.push(["ducats", itemData.ducats + (cur.low
+      ? " (" + (itemData.ducats / cur.low).toFixed(1) + "/plat)" : "")]);
+  }
+  for (const [label, value] of pieces) {
+    const div = document.createElement("div");
+    div.className = "stat";
+    const s = document.createElement("span"); s.className = "dim"; s.textContent = label;
+    const b = document.createElement("b"); b.className = "num"; b.textContent = value;
+    div.append(s, b);
+    stats.appendChild(div);
+  }
+  drawChart(rows);
+}
+
+function drawChart(rows) {
+  const cv = $("#iv-chart"), ctx = cv.getContext("2d");
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  const pts = rows.filter(r => r[1] !== null || r[2] !== null);
+  ctx.fillStyle = "#6b7280"; ctx.font = "12px sans-serif";
+  if (pts.length < 2) {
+    ctx.fillText("not enough history yet — leave the scanner running", 20, 40);
+    return;
+  }
+  const t0 = pts[0][0], t1 = pts[pts.length - 1][0] || t0 + 1;
+  const values = pts.flatMap(r => [r[1], r[2], r[3]]).filter(v => v);
+  const vmax = Math.max(...values) * 1.1, vmin = 0;
+  const L = 44, R = 10, T = 12, B = 22;
+  const X = ts => L + (cv.width - L - R) * (ts - t0) / Math.max(t1 - t0, 1);
+  const Y = v => T + (cv.height - T - B) * (1 - (v - vmin) / (vmax - vmin));
+  ctx.strokeStyle = "#242936";
+  for (let i = 0; i <= 4; i++) {
+    const v = vmin + (vmax - vmin) * i / 4, y = Y(v);
+    ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(cv.width - R, y); ctx.stroke();
+    ctx.fillText(Math.round(v), 6, y + 4);
+  }
+  const days = (t1 - t0) / 86400;
+  ctx.fillText(days < 2 ? Math.round(days * 24) + "h of history"
+                        : Math.round(days) + " days of history",
+               L, cv.height - 6);
+  function line(idx, color) {
+    ctx.strokeStyle = color; ctx.lineWidth = 2;
+    ctx.beginPath();
+    let started = false;
+    for (const r of pts) {
+      if (r[idx] === null || r[idx] === undefined) { started = false; continue; }
+      const x = X(r[0]), y = Y(r[idx]);
+      started ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      started = true;
+    }
+    ctx.stroke();
+  }
+  line(3, "#2b6f74");   // best buy order
+  line(2, "#555c69");   // reference
+  line(1, "#d4af37");   // cheapest listing
+}
+
+$("#iv-scan").onclick = () => showItem(currentItem);
+$("#iv-watch").onclick = async () => {
+  await api("/api/watchlist", { method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ action: "add", slug: currentItem }) });
+  $("#iv-watch").textContent = "watching ✓";
+  setTimeout(() => $("#iv-watch").textContent = "+ watchlist", 2000);
+};
+
+/* ---------- sets tab (prime-set arbitrage) ---------- */
+let lastSetVerify = 0;
+async function loadSets() {
+  let d;
+  try { d = await api("/api/sets"); } catch (e) { return; }
+  if (!d || !Array.isArray(d.sets)) return;
+  // Re-price the best-looking candidates before treating them as real. Stale
+  // parts prices can invert a margin (a "+36p profit" that is really −8p).
+  const needVerify = d.sets.filter(s => s.stale).slice(0, 6);
+  if (needVerify.length && Date.now() - lastSetVerify > 90000) {
+    lastSetVerify = Date.now();
+    const slugs = [];
+    for (const s of needVerify) slugs.push(s.slug, ...(s.part_slugs || []));
+    api("/api/verify", { method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ slugs }) }).catch(() => {});
+    setTimeout(loadSets, 25000);
+  }
+  $("#sets-note").textContent =
+    (d.discovering ? "· still learning " + d.discovering + " set recipes " : "") +
+    (needVerify.length ? "· re-checking " + needVerify.length +
+      " top candidates against live prices " : "") +
+    (d.awaiting_data ? "· " + d.awaiting_data +
+      " sets await price data (fills in as the scanner covers their parts)" : "");
+  const body = $("#sets-body");
+  body.replaceChildren();
+  for (const s of d.sets) {
+    const tr = document.createElement("tr");
+    const nameCell = td(tr, "", "");
+    nameCell.appendChild(wfmAnchor(s.slug, s.name));
+    const breakdown = document.createElement("div");
+    breakdown.className = "dim";
+    breakdown.textContent = s.parts.map(p =>
+      p.name.replace(s.name.replace(" Set", "") + " ", "")
+      + (p.qty > 1 ? "×" + p.qty : "") + " @" + p.low + "p").join(" · ");
+    nameCell.appendChild(breakdown);
+    td(tr, s.set_low + "p", "price num");
+    td(tr, s.parts_total + "p", "num");
+    const opp = td(tr, "", "num");
+    if (s.stale) {
+      // prices this old can invert the answer entirely — say so plainly
+      opp.textContent = (s.margin >= 5 ? "+" + s.margin + "p?" :
+                         s.margin <= -5 ? "−" + (-s.margin) + "p?" : "—")
+                      + "  unverified";
+      opp.className = "dim num";
+      opp.title = "computed from prices " + s.age_min + " min old — re-checking now";
+    } else if (s.margin >= 5) {
+      opp.textContent = "buy parts → sell set  +" + s.margin + "p";
+      opp.className = "m-pos num";
+    } else if (s.margin <= -5) {
+      opp.textContent = "buy set → sell parts  +" + (-s.margin) + "p";
+      opp.className = "m-neg num";
+    } else {
+      opp.textContent = "—";
+      opp.className = "dim num";
+    }
+    const age = td(tr, s.age_min < 90 ? s.age_min + "m" : Math.round(s.age_min / 60) + "h",
+                   "dim num");
+    if (s.stale) age.className = "num note";
+    const actions = td(tr, "", "");
+    const rb = document.createElement("button");
+    rb.textContent = "refresh";
+    rb.onclick = async () => {
+      rb.textContent = "queued ✓";
+      await api("/api/scan_set", { method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ slug: s.slug }) });
+      setTimeout(loadSets, 7000);
+    };
+    actions.appendChild(rb);
+    body.appendChild(tr);
+  }
+}
+setInterval(() => {
+  if ($("#tab-sets").classList.contains("active")) loadSets();
+}, 20000);
+
+/* ---------- dashboard ---------- */
+async function loadDash() {
+  let s;
+  try { s = await api("/api/stats"); } catch (e) { return; }
+  if (!s) return;
+  const tiles = $("#dash-tiles");
+  tiles.replaceChildren();
+  const kb = syncCalls ? Math.round(syncBytes / syncCalls) : 0;
+  for (const [label, value] of [
+    ["deals caught (24 h)", s.deals_24h],
+    ["live right now", s.active],
+    ["median deal lifetime", s.median_life_min != null ? s.median_life_min + " min" : "—"],
+    ["items scanned (6 h)", s.items_scanned_6h + " / " + s.catalog],
+    ["price history", s.snapshots.toLocaleString() + " pts · " + s.history_days + " d"],
+    ["sync payload", kb.toLocaleString() + " B/poll"],
+    ["API throttling", s.throttled],
+  ]) {
+    const d = document.createElement("div");
+    d.className = "stat";
+    const l = document.createElement("span"); l.className = "dim"; l.textContent = label;
+    const b = document.createElement("b"); b.className = "num"; b.textContent = value;
+    d.append(l, b);
+    tiles.appendChild(d);
+  }
+  drawHours(s.by_hour);
+  const best = $("#dash-best");
+  best.replaceChildren();
+  for (const d of s.best) {
+    const tr = document.createElement("tr");
+    const c = td(tr, "", "");
+    c.appendChild(wfmAnchor(d.slug, d.name));
+    td(tr, d.price + "p", "price num");
+    td(tr, "−" + d.pct + "%", "pct num");
+    td(tr, ago(d.ts), "dim num");
+    best.appendChild(tr);
+  }
+  const busy = $("#dash-busy");
+  busy.replaceChildren();
+  for (const d of s.busiest) {
+    const tr = document.createElement("tr");
+    const c = td(tr, "", "");
+    c.appendChild(wfmAnchor(d.slug, d.name));
+    td(tr, d.n + (d.n === 1 ? " deal" : " deals"), "dim num");
+    busy.appendChild(tr);
+  }
+  const bd = $("#dash-breakdown");
+  bd.replaceChildren();
+  for (const [group, obj] of [["kind", s.kinds], ["category", s.categories]]) {
+    for (const [k, v] of Object.entries(obj).sort((a, b) => b[1] - a[1])) {
+      const d = document.createElement("div");
+      d.className = "stat";
+      const l = document.createElement("span");
+      l.className = "dim"; l.textContent = k + " (" + group + ")";
+      const b = document.createElement("b"); b.className = "num"; b.textContent = v;
+      d.append(l, b);
+      bd.appendChild(d);
+    }
+  }
+}
+
+function drawHours(hours) {
+  const cv = $("#dash-chart"), ctx = cv.getContext("2d");
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  const max = Math.max(1, ...hours);
+  const n = hours.length, pad = 22, gap = 4;
+  const w = (cv.width - pad * 2) / n;
+  ctx.fillStyle = "#6b7280"; ctx.font = "11px sans-serif";
+  ctx.fillText(max + " deals", 2, 12);
+  ctx.fillText("0", 2, cv.height - 16);
+  hours.forEach((v, i) => {
+    const h = Math.round((cv.height - 34) * v / max);
+    ctx.fillStyle = i === n - 1 ? "#d4af37" : "#3f4757";
+    ctx.fillRect(pad + i * w, cv.height - 20 - h, w - gap, h);
+  });
+  ctx.fillStyle = "#6b7280";
+  ctx.fillText("24 h ago", pad, cv.height - 4);
+  ctx.fillText("now", cv.width - pad - 20, cv.height - 4);
+}
+setInterval(() => {
+  if ($("#tab-dash").classList.contains("active")) loadDash();
+}, 20000);
+
+/* ---------- keyboard shortcuts ---------- */
+const TAB_KEYS = ["feed", "dash", "items", "sets", "baro", "ducats",
+                  "watchlist", "settings"];
+document.addEventListener("keydown", e => {
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName);
+  if (e.key === "/" && !typing) {
+    e.preventDefault();
+    document.querySelector('nav button[data-tab="feed"]').click();
+    $("#feed-search").focus();
+    return;
+  }
+  if (e.key === "Escape" && typing) { e.target.value = ""; e.target.blur();
+    if (e.target.id === "feed-search") { feedQuery = ""; renderFeed(); }
+    return; }
+  if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
+  const idx = parseInt(e.key, 10) - 1;
+  if (idx >= 0 && idx < TAB_KEYS.length) {
+    document.querySelector(`nav button[data-tab="${TAB_KEYS[idx]}"]`).click();
+  } else if (e.key === "m") {
+    $("#btn-mute").click();
+  } else if (e.key === "c") {
+    const first = document.querySelector("#feed-body tr button");
+    if (first) first.click();
+  }
+});
+
+/* ---------- twitch live indicator ---------- */
+async function pollTwitch() {
+  let t;
+  try { t = await api("/api/twitch"); } catch (e) { return; }
+  if (!t) return;
+  const el = $("#p-twitch");
+  el.hidden = false;
+  el.classList.toggle("live", !!t.live);
+  if (t.live) {
+    const viewers = t.viewers ? " · " + t.viewers.toLocaleString() + " watching" : "";
+    el.textContent = "🔴 Warframe LIVE" + viewers;
+    el.title = (t.title || "twitch.tv/warframe")
+             + (t.game ? " — " + t.game : "") + "\nClick to open the stream";
+  } else {
+    el.textContent = "Twitch offline";
+    el.title = "twitch.tv/warframe is not streaming right now";
+  }
+}
+setInterval(pollTwitch, 120000);
+
+/* ---------- baro tab (his wares vs the market) ---------- */
+async function loadBaro() {
+  updateBaro();
+  let d;
+  try { d = await api("/api/baro_wares"); } catch (e) { return; }
+  if (!d || !Array.isArray(d.wares)) return;
+  const body = $("#baro-body");
+  body.replaceChildren();
+  for (const w of d.wares) {
+    const tr = document.createElement("tr");
+    if (!w.slug) tr.className = "ware-untradeable";
+    const nameCell = td(tr, "", "");
+    if (w.slug) {
+      const chart = document.createElement("span");
+      chart.textContent = w.name;
+      chart.style.cursor = "pointer";
+      chart.title = "open price history";
+      chart.onclick = () => {
+        document.querySelector('nav button[data-tab="items"]').click();
+        showItem(w.slug);
+      };
+      nameCell.append(chart, document.createTextNode(" "),
+                      wfmAnchor(w.slug, "market"));
+    } else {
+      nameCell.textContent = w.name;
+    }
+    td(tr, w.ducats != null ? w.ducats + "d" : "—", "num price");
+    td(tr, w.credits != null ? (w.credits / 1000).toFixed(0) + "k" : "—", "num dim");
+    const market = td(tr, w.low != null ? w.low + "p" : (w.slug ? "…" : "—"), "num");
+    market.className = "num " + (w.deal ? "val-hot" : "price");
+    if (w.sellers != null) {
+      const s = document.createElement("div");
+      s.className = "dim";
+      s.textContent = w.sellers + " sellers";
+      market.appendChild(s);
+    }
+    const val = td(tr, w.per100 != null ? w.per100 + " p/100d" : "—", "num");
+    val.className = "num " + (w.per100 >= 12 ? "val-hot"
+                            : w.per100 >= 8 ? "val-ok" : "dim");
+    td(tr, w.age_min == null ? "—"
+         : w.age_min < 90 ? w.age_min + "m" : Math.round(w.age_min / 60) + "h",
+       "dim num");
+    const dealCell = td(tr, "", "");
+    if (w.deal) {
+      const b = document.createElement("span");
+      b.className = "badge " + w.deal.kind;
+      b.textContent = w.deal.kind === "jackpot" ? "★ jackpot" : w.deal.kind;
+      dealCell.appendChild(b);
+      const info = document.createElement("div");
+      info.className = "note";
+      info.textContent = w.deal.price + "p (−" + w.deal.pct + "%) · " + w.deal.seller;
+      dealCell.appendChild(info);
+    } else if (w.slug) {
+      dealCell.textContent = "—";
+      dealCell.className = "dim";
+    }
+    const actions = td(tr, "", "");
+    if (w.slug) {
+      const rb = document.createElement("button");
+      rb.textContent = "refresh";
+      rb.onclick = async () => {
+        rb.textContent = "…";
+        await api("/api/item_live?slug=" + encodeURIComponent(w.slug))
+          .catch(() => null);
+        loadBaro();
+      };
+      actions.appendChild(rb);
+    }
+    body.appendChild(tr);
+  }
+}
+setInterval(() => {
+  if ($("#tab-baro").classList.contains("active")) loadBaro();
+}, 30000);
+
+/* ---------- ducats tab (Baro fodder) ---------- */
+let lastDucatVerify = 0;
+let baroData = null;
+async function updateBaro() {
+  if (!baroData || !baroData.activation) {
+    // never cache an error response — retry on the next tick instead
+    try {
+      const d = await api("/api/baro");
+      if (d && d.activation) baroData = d;
+    } catch (e) { /* retry later */ }
+  }
+  if (!baroData || !baroData.activation) return;
+  const targets = [$("#baro-line"), $("#baro-line2")].filter(Boolean);
+  const el = { set className(c) { targets.forEach(t => t.className = c); },
+               set textContent(t) { targets.forEach(x => x.textContent = t); } };
+  const now = Date.now();
+  const act = Date.parse(baroData.activation);
+  const exp = Date.parse(baroData.expiry);
+  const fmt = ms => {
+    const m = Math.max(1, Math.round(ms / 60000));
+    if (m < 120) return m + " min";
+    const h = Math.round(m / 60);
+    return h < 48 ? h + " h" : Math.floor(h / 24) + "d " + (h % 24) + "h";
+  };
+  if (now < act) {
+    el.className = "baro";
+    el.textContent = "🛸 Baro Ki'Teer arrives in " + fmt(act - now) + " — "
+      + new Date(act).toLocaleString([], {weekday: "long", hour: "2-digit",
+                                          minute: "2-digit", day: "numeric",
+                                          month: "short"})
+      + " at " + baroData.location;
+  } else if (now < exp) {
+    el.className = "baro here";
+    el.textContent = "🛸 Baro Ki'Teer is HERE — " + baroData.location
+      + ", leaves in " + fmt(exp - now);
+  } else {
+    baroData = null;  // window passed: refetch the next visit
+    el.textContent = "";
+  }
+}
+setInterval(updateBaro, 60000);
+
+async function loadDucats() {
+  updateBaro();
+  let rows;
+  try { rows = await api("/api/ducats"); } catch (e) { return; }
+  if (!Array.isArray(rows)) return;
+  // same trap as the Sets tab: an outdated cheap price inflates the ratio,
+  // so re-price the leaders before they're treated as the best buys
+  const stale = rows.filter(r => r.stale).slice(0, 12);
+  if (stale.length && Date.now() - lastDucatVerify > 90000) {
+    lastDucatVerify = Date.now();
+    api("/api/verify", { method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ slugs: stale.map(r => r.slug) }) }).catch(() => {});
+    setTimeout(loadDucats, 25000);
+  }
+  const body = $("#ducats-body");
+  body.replaceChildren();
+  for (const r of rows) {
+    const tr = document.createElement("tr");
+    const name = td(tr, "", "");
+    const chart = document.createElement("span");
+    chart.textContent = r.name;
+    chart.style.cursor = "pointer";
+    chart.title = "open price history";
+    chart.onclick = () => {
+      document.querySelector('nav button[data-tab="items"]').click();
+      showItem(r.slug);
+    };
+    name.append(chart, document.createTextNode(" "), wfmAnchor(r.slug, "market"));
+    td(tr, r.low + "p", "price num");
+    td(tr, r.ducats, "num");
+    const ratio = td(tr, r.ratio + " d/p" + (r.stale ? "?" : ""), "num");
+    ratio.className = (r.stale ? "dim"
+                     : r.ratio >= 20 ? "m-pos" : r.ratio >= 12 ? "pct" : "dim") + " num";
+    if (r.stale) ratio.title = "price is " + r.age_min
+      + " min old — a stale low price inflates this ratio; re-checking";
+    td(tr, r.sellers, "dim num");
+    const age = td(tr, r.age_min < 90 ? r.age_min + "m" : Math.round(r.age_min / 60) + "h",
+                   "dim num");
+    if (r.stale) age.className = "num note";
+    const actions = td(tr, "", "");
+    const rb = document.createElement("button");
+    rb.textContent = "refresh";
+    rb.onclick = async () => {
+      rb.textContent = "…";
+      await api("/api/item_live?slug=" + encodeURIComponent(r.slug))
+        .catch(() => null);
+      loadDucats();
+    };
+    actions.appendChild(rb);
+    body.appendChild(tr);
+  }
+}
+setInterval(() => {
+  if ($("#tab-ducats").classList.contains("active")) loadDucats();
+}, 30000);
+
+/* ---------- watchlist tab ---------- */
+wireSearch("#wl-search", "#wl-results", async it => {
+  await api("/api/watchlist", { method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ action: "add", slug: it.slug }) });
+  loadWatchlist();
+});
+
+async function loadWatchlist() {
+  const list = await api("/api/watchlist");
+  const wrap = $("#wl-list");
+  wrap.replaceChildren();
+  if (!list.length) {
+    const p = document.createElement("p");
+    p.className = "dim";
+    p.textContent = "Nothing watched yet. Add items you want near-real-time alerts for.";
+    wrap.appendChild(p);
+    return;
+  }
+  for (const it of list) {
+    const row = document.createElement("div");
+    row.className = "wl-row";
+    const name = document.createElement("span");
+    name.textContent = it.name;
+    const target = document.createElement("input");
+    target.type = "number";
+    target.className = "wl-target";
+    target.placeholder = "target p";
+    target.title = "alert when the cheapest listing (max rank / the set) "
+                 + "is at or under this price";
+    if (it.target) target.value = it.target;
+    target.onchange = async () => {
+      await api("/api/watchlist", { method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ action: "target", slug: it.slug,
+                               target: target.value || null }) });
+    };
+    const view = document.createElement("button");
+    view.textContent = "chart";
+    view.onclick = () => {
+      document.querySelector('nav button[data-tab="items"]').click();
+      showItem(it.slug);
+    };
+    const rm = document.createElement("button");
+    rm.textContent = "remove";
+    rm.onclick = async () => {
+      await api("/api/watchlist", { method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ action: "remove", slug: it.slug }) });
+      loadWatchlist();
+    };
+    row.append(name, target, view, rm);
+    wrap.appendChild(row);
+  }
+}
+
+/* ---------- settings tab ---------- */
+let cfgLoaded = false;
+async function loadConfig() {
+  const cfg = await api("/api/config");
+  const form = $("#cfg-form");
+  for (const [key, value] of Object.entries(cfg)) {
+    const el = form.elements[key];
+    if (!el) continue;
+    if (el.type === "checkbox") el.checked = !!value;
+    else el.value = value;
+  }
+  cfgLoaded = true;
+}
+$("#cfg-save").onclick = async () => {
+  // An unpopulated form has every checkbox unchecked — saving it would
+  // silently switch off every notification. Never submit before loading.
+  if (!cfgLoaded) { await loadConfig(); return; }
+  const form = $("#cfg-form"), out = {};
+  for (const el of form.elements) {
+    if (!el.name) continue;
+    out[el.name] = el.type === "checkbox" ? el.checked : el.value;
+  }
+  await api("/api/config", { method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(out) });
+  await loadPrefs();
+  $("#cfg-saved").hidden = false;
+  setTimeout(() => $("#cfg-saved").hidden = true, 2000);
+};
+
+/* ---------- boot ---------- */
+loadPrefs(); pollStatus(); pollDeals(); ensureIndex(); pollTwitch(); updateBaro();
+setInterval(pollStatus, 2000);
+setInterval(pollDeals, 3000);  // fallback cadence; SSE below makes it instant
+try {
+  // server push: the app notifies us the moment a deal appears or expires
+  const es = new EventSource("/api/events");
+  es.onmessage = () => pollDeals();
+} catch (e) {}
+</script>
+</body>
+</html>
