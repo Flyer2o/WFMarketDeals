@@ -1,0 +1,723 @@
+{
+ "updated": "2026-07-27",
+ "meta_as_of": "July 2026 (Update 43: Jade Shadows: Constellations, hotfix 43.0.8)",
+ "sources": [
+  "immortalboost.com weapon guide (June 2026)",
+  "sportskeeda + warframetierlist Incarnon tier lists (July 2026)",
+  "thegamer.com Coda weapon tier list (May 2025)",
+  "ofzenandcomputing.com weapon tier list (updated June 2026)",
+  "warframetierlist.com primary tier list (2026)",
+  "itemku.com build + weapon guides (2026)",
+  "propelrc.com weapon tier list (July 2026)",
+  "warframe.com official patch notes (Update 43, June 2026)"
+ ],
+ "note": "Keyed by EXACT warframe.market riven-weapon name (the weapon family). tier: S/A/B/C/D. incarnon: tier refers to the Incarnon Genesis form. Edit this file to update the meta; the app reloads it on restart.",
+ "weapons": {
+  "Acceltra": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Aeolak": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Akjagara": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Akjagara Prime"
+  },
+  "Aklato": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Akstiletto": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Amphis": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Angstrum": {
+   "tier": "B",
+   "incarnon": true,
+   "note": ""
+  },
+  "Arca Plasmor": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "Tenet Arca Plasmor is the strong variant"
+  },
+  "Astilla": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Atomos": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Attica": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Azima": {
+   "tier": "D",
+   "incarnon": false,
+   "note": ""
+  },
+  "Ballistica": {
+   "tier": "B",
+   "incarnon": true,
+   "note": "new Incarnon, June 2026"
+  },
+  "Baza": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Bo": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Boar": {
+   "tier": "C",
+   "incarnon": true,
+   "note": ""
+  },
+  "Bolto": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Boltor": {
+   "tier": "B",
+   "incarnon": true,
+   "note": "rated on the Incarnon; Boltor Prime without it is C tier"
+  },
+  "Brakk": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "Kuva Brakk is the strong variant"
+  },
+  "Braton": {
+   "tier": "C",
+   "incarnon": true,
+   "note": ""
+  },
+  "Broken War": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Bubonico": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Burston": {
+   "tier": "A",
+   "incarnon": true,
+   "note": "rated on the Incarnon, which some lists put as high as S; the plain Burston is D"
+  },
+  "Catabolyst": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "rated on the Coda Catabolyst"
+  },
+  "Catchmoon": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "kitgun"
+  },
+  "Caustacyst": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "rated on the Coda Caustacyst"
+  },
+  "Cedo": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Ceramic Dagger": {
+   "tier": "B",
+   "incarnon": true,
+   "note": "finisher builds"
+  },
+  "Cernos": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Cernos Prime; Proboscis Cernos is the stronger pick"
+  },
+  "Coda Bassocyst": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "strongest Coda weapon — Infested Arca Plasmor with Radiation/Blast and a Magnetic debuff on alt-fire"
+  },
+  "Coda Motovore": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Infested hammer, good crit for its class"
+  },
+  "Corinth": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Corinth Prime"
+  },
+  "Corufell": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "heavy-attack gunblade"
+  },
+  "Cronus": {
+   "tier": "D",
+   "incarnon": false,
+   "note": ""
+  },
+  "Cyanex": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Cycron": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "Tenet Cycron is the strong variant"
+  },
+  "Destreza": {
+   "tier": "B",
+   "incarnon": true,
+   "note": "new Incarnon, June 2026"
+  },
+  "Detron": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "Mara Detron is the strong variant"
+  },
+  "Dragon Nikana": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Dread": {
+   "tier": "A",
+   "incarnon": true,
+   "note": "rated on the Incarnon; the plain Dread is C tier"
+  },
+  "Dual Coda Torxica": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Cold spores spread on kill"
+  },
+  "Dual Ichor": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Dual Kamas": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Dual Kamas Prime"
+  },
+  "Dual Toxocyst": {
+   "tier": "S",
+   "incarnon": true,
+   "note": "chains with Viral"
+  },
+  "Epitaph": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Euphona Prime": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Felarx": {
+   "tier": "S",
+   "incarnon": true,
+   "note": ""
+  },
+  "Fragor": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Fulmin": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Furax": {
+   "tier": "C",
+   "incarnon": false,
+   "note": "Furax Wraith"
+  },
+  "Furis": {
+   "tier": "B",
+   "incarnon": true,
+   "note": ""
+  },
+  "Galatine": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Glaive": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "hybrid thrown/melee"
+  },
+  "Gorgon": {
+   "tier": "D",
+   "incarnon": false,
+   "note": ""
+  },
+  "Gram": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Grimoire": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Guandao": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "Guandao Prime"
+  },
+  "Hate": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Heat Sword": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Hek": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "Vaykor Hek is the strong variant"
+  },
+  "Hema": {
+   "tier": "C",
+   "incarnon": false,
+   "note": "the Coda Hema underperforms for its mastery rank"
+  },
+  "Hirudo": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "the Coda Hirudo variant rates a step lower, at B"
+  },
+  "Ignis": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Innodem": {
+   "tier": "S",
+   "incarnon": true,
+   "note": ""
+  },
+  "Jat Kittag": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Jaw Sword": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Karak": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Kuva Karak is the strong variant"
+  },
+  "Kohm": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "Kuva Kohm is the strong variant — status shotgun workhorse"
+  },
+  "Kompressa": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "status kitgun-style secondary"
+  },
+  "Kronen": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "widely named best all-round melee"
+  },
+  "Kunai": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Kuva Bramma": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "lists split: some still rate it S, others dropped it over damage falloff nerfs — A is the midpoint, treat it as contested",
+   "disputed": true
+  },
+  "Kuva Chakkhurr": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Laetum": {
+   "tier": "S",
+   "incarnon": true,
+   "note": "often called the best Incarnon outright"
+  },
+  "Lato": {
+   "tier": "D",
+   "incarnon": false,
+   "note": "Lato Vandal"
+  },
+  "Latron": {
+   "tier": "S",
+   "incarnon": true,
+   "note": "armour-stripping precision rifle"
+  },
+  "Lecta": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Lesion": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Mire": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "the Coda Mire is called the best sword in the game; the plain Mire is C tier"
+  },
+  "Miter": {
+   "tier": "C",
+   "incarnon": true,
+   "note": ""
+  },
+  "Nami Skyla": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "Nami Skyla Prime"
+  },
+  "Nataruk": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "best non-Incarnon bow"
+  },
+  "Nikana": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Nukor": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "Kuva Nukor: chaining beam, armour strip"
+  },
+  "Obex": {
+   "tier": "B",
+   "incarnon": true,
+   "note": "new Incarnon, June 2026"
+  },
+  "Ocucor": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "beam secondary"
+  },
+  "Ogris": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Kuva Ogris is the strong variant"
+  },
+  "Okina": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "Okina Prime rates S among dual daggers"
+  },
+  "Orthos": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "Orthos Prime rates A in the July lists"
+  },
+  "Orvius": {
+   "tier": "D",
+   "incarnon": false,
+   "note": ""
+  },
+  "Paracesis": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Pathocyst": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "the Coda Pathocyst is S tier"
+  },
+  "Phantasma": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Phenmor": {
+   "tier": "S",
+   "incarnon": true,
+   "note": "burst damage, headshot scaling"
+  },
+  "Plinx": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "Tenet Plinx is the strong variant"
+  },
+  "Pox": {
+   "tier": "C",
+   "incarnon": false,
+   "note": "the Coda Pox underperforms for its mastery rank"
+  },
+  "Praedos": {
+   "tier": "S",
+   "incarnon": true,
+   "note": "top-tier Incarnon melee"
+  },
+  "Proboscis Cernos": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Pyrana": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Quanta": {
+   "tier": "C",
+   "incarnon": false,
+   "note": "Quanta Vandal"
+  },
+  "Quartakk": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Kuva Quartakk is the strong variant"
+  },
+  "Quassus": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Rattleguts": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "kitgun"
+  },
+  "Reaper Prime": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "rated B in the July lists"
+  },
+  "Redeemer": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Ripkas": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Rubico": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "sniper benchmark"
+  },
+  "Sarofang": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Seer": {
+   "tier": "D",
+   "incarnon": false,
+   "note": ""
+  },
+  "Sepfahn": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "zaw"
+  },
+  "Sicarus": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Sicarus Prime"
+  },
+  "Skana": {
+   "tier": "B",
+   "incarnon": true,
+   "note": "rated on the Incarnon; the plain Skana is D tier"
+  },
+  "Soma": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Spectra": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "Spectra Vandal"
+  },
+  "Spira": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Sporelacer": {
+   "tier": "S",
+   "incarnon": false,
+   "note": "kitgun"
+  },
+  "Sporothrix": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "rated on the Coda Sporothrix"
+  },
+  "Stahlta": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Staticor": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Stropha": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Strun": {
+   "tier": "B",
+   "incarnon": true,
+   "note": "rated on the Incarnon; the plain Strun is D tier"
+  },
+  "Stug": {
+   "tier": "C",
+   "incarnon": true,
+   "note": "new Incarnon, June 2026"
+  },
+  "Supra": {
+   "tier": "C",
+   "incarnon": false,
+   "note": ""
+  },
+  "Sybaris": {
+   "tier": "B",
+   "incarnon": true,
+   "note": ""
+  },
+  "Synapse": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "rated on the Coda Synapse"
+  },
+  "Tatsu": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Tenora": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Tigris": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  },
+  "Tombfinger": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "kitgun"
+  },
+  "Tonkor": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "Kuva Tonkor is the strong variant"
+  },
+  "Torid": {
+   "tier": "S",
+   "incarnon": true,
+   "note": "best Incarnon primary of 2026 — scaling gas clouds"
+  },
+  "Trumna": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Tysis": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "rated on the Coda Tysis"
+  },
+  "Vasto": {
+   "tier": "C",
+   "incarnon": false,
+   "note": "Vasto Prime is the usable variant, and only C"
+  },
+  "Vectis": {
+   "tier": "B",
+   "incarnon": true,
+   "note": "new Incarnon, June 2026"
+  },
+  "Venka": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "Venka Prime"
+  },
+  "Vitrica": {
+   "tier": "S",
+   "incarnon": false,
+   "note": ""
+  },
+  "Xoris": {
+   "tier": "B",
+   "incarnon": false,
+   "note": "glaive, popular for combo builds"
+  },
+  "Zarr": {
+   "tier": "A",
+   "incarnon": false,
+   "note": "Kuva Zarr is the strong variant"
+  },
+  "Zenith": {
+   "tier": "B",
+   "incarnon": false,
+   "note": ""
+  },
+  "Zymos": {
+   "tier": "A",
+   "incarnon": false,
+   "note": ""
+  }
+ }
+}

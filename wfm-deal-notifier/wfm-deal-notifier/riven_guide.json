@@ -1,0 +1,413 @@
+{
+ "updated": "2026-07-28",
+ "note": "What to roll a riven FOR, judged mechanically rather than by what expensive rivens happen to carry. Multipliers and the never-negative list are from the official wiki; the negative-stat judgements are the community consensus that the app then filters per weapon. Edit freely — the app reloads it on restart.",
+ "sources": [
+  "wiki.warframe.com Riven Mods (attribute table, roll-shape multipliers, disposition range, positive-only attributes)",
+  "steamcommunity.com + forums.warframe.com riven discussions (which negatives are harmless in practice)",
+  "itemku.com / immortalboost.com weapon build guides 2026 (archetype mod packages)"
+ ],
+ "mechanics": {
+  "why_a_negative_helps": "A negative is not a penalty you tolerate — it is how you buy bigger positives. The same three positives roll 25% higher when a negative rides along (0.9375x against 0.75x), and the mod costs less to slot. A 3-positive riven with no negative is the weakest common shape in the game.",
+  "roll_shapes": [
+   {
+    "shape": "2 positives + 1 negative",
+    "positive_mult": 1.2375,
+    "negative_mult": -0.495,
+    "note": "the biggest per-stat numbers there are — ideal when the two stats you want are the only two that matter"
+   },
+   {
+    "shape": "3 positives + 1 negative",
+    "positive_mult": 0.9375,
+    "negative_mult": -0.75,
+    "note": "the usual god-roll shape: three useful stats still rolling above a no-negative riven"
+   },
+   {
+    "shape": "2 positives, no negative",
+    "positive_mult": 0.99,
+    "negative_mult": 0,
+    "note": "clean but modest; fine on a weapon where every negative would hurt"
+   },
+   {
+    "shape": "3 positives, no negative",
+    "positive_mult": 0.75,
+    "negative_mult": 0,
+    "note": "looks impressive and rolls the weakest — three watered-down stats"
+   }
+  ],
+  "disposition": {
+   "min": 0.5,
+   "max": 1.55,
+   "note": "Every rolled value is multiplied by disposition, so the same stat is worth three times more on a 1.55 weapon than on a 0.5 one. Disposition moves inversely to how much a weapon is used, which is why the strongest weapons roll the weakest rivens."
+  },
+  "never_negative": [
+   "Heat",
+   "Cold",
+   "Electricity",
+   "Toxin",
+   "Punch Through"
+  ],
+  "never_negative_note": "These five can only ever appear as positives, so they can never be the harmless negative you are hoping for."
+ },
+ "positives": {
+  "gun_crit": [
+   {
+    "stat": "Critical Damage",
+    "why": "multiplies every crit and is the single largest damage stat on a crit gun"
+   },
+   {
+    "stat": "Critical Chance",
+    "why": "pushes you toward and past the next crit tier, which is a step change rather than a slope"
+   },
+   {
+    "stat": "Multishot",
+    "why": "a flat multiplier on damage AND status output, and it stacks with Galvanized Chamber"
+   },
+   {
+    "stat": "Damage",
+    "why": "the base every other multiplier is applied to"
+   }
+  ],
+  "gun_status": [
+   {
+    "stat": "Multishot",
+    "why": "every extra pellet is another status roll, so this is a status stat as much as a damage one"
+   },
+   {
+    "stat": "Status Chance",
+    "why": "gets you to guaranteed procs, where Galvanized Aptitude and Condition Overload-style scaling live"
+   },
+   {
+    "stat": "Damage",
+    "why": "raises the base that Viral and Slash then multiply"
+   },
+   {
+    "stat": "Critical Damage",
+    "why": "worth taking as the third stat once status is already saturated"
+   }
+  ],
+  "gun_raw": [
+   {
+    "stat": "Damage",
+    "why": "with no crit or status to scale, raw damage and multishot are all that is left"
+   },
+   {
+    "stat": "Multishot",
+    "why": "a straight multiplier on output"
+   },
+   {
+    "stat": "Critical Damage",
+    "why": "still useful if the weapon crits at all"
+   },
+   {
+    "stat": "Fire Rate",
+    "why": "more shots per second is more damage per second on a weapon with nothing else to scale"
+   }
+  ],
+  "melee_crit": [
+   {
+    "stat": "Critical Damage",
+    "why": "melee reaches red crits through Blood Rush, and crit damage is what those tiers multiply"
+   },
+   {
+    "stat": "Critical Chance",
+    "why": "the base that Blood Rush multiplies by combo — a small base becomes a huge one"
+   },
+   {
+    "stat": "Damage",
+    "why": "the base under Primed Pressure Point and the elementals"
+   },
+   {
+    "stat": "Melee Range",
+    "why": "range is a damage stat on melee: it decides how many enemies each swing reaches"
+   }
+  ],
+  "melee_status": [
+   {
+    "stat": "Status Chance",
+    "why": "Condition Overload pays per status type on the target, so saturating status is the build"
+   },
+   {
+    "stat": "Damage",
+    "why": "the base Condition Overload multiplies"
+   },
+   {
+    "stat": "Melee Range",
+    "why": "more targets per swing, and it keeps the combo counter fed"
+   },
+   {
+    "stat": "Critical Damage",
+    "why": "the usual third stat once status is guaranteed"
+   }
+  ],
+  "melee_heavy": [
+   {
+    "stat": "Critical Damage",
+    "why": "heavy attacks consume the combo as a crit multiplier — this is the payload stat"
+   },
+   {
+    "stat": "Damage",
+    "why": "the base the heavy multiplier is applied to"
+   },
+   {
+    "stat": "Heavy Attack Efficiency",
+    "why": "lets you swing heavy again without rebuilding the whole combo"
+   },
+   {
+    "stat": "Critical Chance",
+    "why": "guarantees the heavy actually crits"
+   }
+  ]
+ },
+ "negatives": {
+  "note": "Ranked best-first. The app removes any that would actually hurt the weapon in front of you.",
+  "candidates": [
+   {
+    "stat": "Weapon Recoil",
+    "verdict": "best",
+    "classes": [
+     "gun"
+    ],
+    "why": "a negative recoil roll means the gun kicks LESS — this is a straight upgrade wearing a minus sign",
+    "unsafe_when": [
+     "no_recoil"
+    ]
+   },
+   {
+    "stat": "Zoom",
+    "verdict": "best",
+    "classes": [
+     "gun"
+    ],
+    "why": "affects the sight picture and nothing else; the classic free negative",
+    "unsafe_when": [
+     "sniper",
+     "bow"
+    ]
+   },
+   {
+    "stat": "Damage vs Infested",
+    "verdict": "good",
+    "classes": [
+     "gun",
+     "melee"
+    ],
+    "why": "faction damage only applies to that faction — pick the one you fight least and it costs you nothing in Steel Path Grineer and Corpus"
+   },
+   {
+    "stat": "Damage vs Corpus",
+    "verdict": "good",
+    "classes": [
+     "gun",
+     "melee"
+    ],
+    "why": "same trick, if Corpus is not where you spend your time"
+   },
+   {
+    "stat": "Damage vs Grineer",
+    "verdict": "good",
+    "classes": [
+     "gun",
+     "melee"
+    ],
+    "why": "same trick, if Grineer is not where you spend your time"
+   },
+   {
+    "stat": "Status Duration",
+    "verdict": "good",
+    "classes": [
+     "gun",
+     "melee"
+    ],
+    "why": "irrelevant on a pure crit build, where procs are incidental",
+    "unsafe_when": [
+     "status_build",
+     "slash_build"
+    ]
+   },
+   {
+    "stat": "Finisher Damage",
+    "verdict": "good",
+    "classes": [
+     "melee"
+    ],
+    "why": "finishers are a niche animation, not part of any scaling melee build"
+   },
+   {
+    "stat": "Projectile Speed",
+    "verdict": "situational",
+    "classes": [
+     "gun"
+    ],
+    "why": "costs nothing on a hitscan weapon, which resolves instantly anyway",
+    "unsafe_when": [
+     "projectile",
+     "bow",
+     "launcher"
+    ]
+   },
+   {
+    "stat": "Ammo Maximum",
+    "verdict": "situational",
+    "classes": [
+     "gun"
+    ],
+    "why": "fine on a weapon with deep reserves or one that refills itself; painful on anything that eats ammo",
+    "unsafe_when": [
+     "launcher",
+     "high_fire_rate",
+     "beam"
+    ]
+   },
+   {
+    "stat": "Reload Speed",
+    "verdict": "situational",
+    "classes": [
+     "gun"
+    ],
+    "why": "tolerable when the magazine is large enough that you rarely reload",
+    "unsafe_when": [
+     "small_magazine",
+     "sniper"
+    ]
+   },
+   {
+    "stat": "Impact",
+    "verdict": "situational",
+    "classes": [
+     "gun",
+     "melee"
+    ],
+    "why": "cutting an unused physical damage type barely registers",
+    "unsafe_when": [
+     "impact_heavy"
+    ]
+   },
+   {
+    "stat": "Puncture",
+    "verdict": "situational",
+    "classes": [
+     "gun",
+     "melee"
+    ],
+    "why": "same, when the weapon does not lean on Puncture",
+    "unsafe_when": [
+     "puncture_heavy"
+    ]
+   },
+   {
+    "stat": "Combo Duration",
+    "verdict": "situational",
+    "classes": [
+     "melee"
+    ],
+    "why": "survivable if you are swinging constantly and never let the combo drop",
+    "unsafe_when": [
+     "heavy_build"
+    ]
+   }
+  ],
+  "avoid": [
+   {
+    "stat": "Damage",
+    "why": "everything else multiplies it"
+   },
+   {
+    "stat": "Multishot",
+    "why": "you are giving up damage and status output at once"
+   },
+   {
+    "stat": "Critical Chance",
+    "why": "on a crit weapon this is the build"
+   },
+   {
+    "stat": "Critical Damage",
+    "why": "the largest single multiplier a crit weapon has"
+   },
+   {
+    "stat": "Status Chance",
+    "why": "on a status weapon this is the build"
+   },
+   {
+    "stat": "Magazine Capacity",
+    "why": "turns a working weapon into a reloading animation"
+   },
+   {
+    "stat": "Fire Rate",
+    "why": "cuts damage per second directly"
+   },
+   {
+    "stat": "Attack Speed",
+    "why": "melee attack speed is damage, combo generation and survivability at once"
+   },
+   {
+    "stat": "Slash",
+    "why": "Slash procs are true damage and carry most melee and Hunter Munitions builds"
+   },
+   {
+    "stat": "Melee Range",
+    "why": "range is how many enemies a swing reaches"
+   }
+  ]
+ },
+ "attributes": {
+  "note": "Straight from the wiki's riven attribute table. Melee and guns share most stats but not all: melee has no Multishot, Zoom, Recoil, Magazine, Ammo, Reload, Projectile Speed or Punch Through, while guns have no Range, Combo or Heavy Attack stats. Critical Damage and faction damage roll on BOTH — an earlier version of this file had them as gun-only.",
+  "gun": [
+   "Damage",
+   "Critical Chance",
+   "Critical Damage",
+   "Multishot",
+   "Fire Rate",
+   "Status Chance",
+   "Status Duration",
+   "Reload Speed",
+   "Magazine Capacity",
+   "Ammo Maximum",
+   "Punch Through",
+   "Projectile Speed",
+   "Weapon Recoil",
+   "Zoom",
+   "Cold",
+   "Electricity",
+   "Heat",
+   "Toxin",
+   "Impact",
+   "Puncture",
+   "Slash",
+   "Damage vs Corpus",
+   "Damage vs Grineer",
+   "Damage vs Infested"
+  ],
+  "melee": [
+   "Damage",
+   "Critical Chance",
+   "Critical Damage",
+   "Attack Speed",
+   "Melee Range",
+   "Status Chance",
+   "Status Duration",
+   "Combo Duration",
+   "Initial Combo",
+   "Additional Combo Count Chance",
+   "Heavy Attack Efficiency",
+   "Finisher Damage",
+   "Slide Attack Critical Chance",
+   "Cold",
+   "Electricity",
+   "Heat",
+   "Toxin",
+   "Impact",
+   "Puncture",
+   "Slash",
+   "Damage vs Corpus",
+   "Damage vs Grineer",
+   "Damage vs Infested"
+  ],
+  "positive_only": [
+   "Cold",
+   "Electricity",
+   "Heat",
+   "Toxin",
+   "Punch Through"
+  ]
+ }
+}

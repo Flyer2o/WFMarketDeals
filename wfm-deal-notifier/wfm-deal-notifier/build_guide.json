@@ -1,0 +1,3064 @@
+{
+ "updated": "2026-07-28",
+ "note": "Build knowledge for the Builds tab. Every mod name here was checked against api.warframestat.us/mods (1803 mods) and every arcane against the warframe.market catalog, so nothing in this file is a remembered guess. Edit freely — the app reloads it on restart. Augment names that could not be verified against the mod dataset were removed rather than guessed.",
+ "sources": [
+  "wiki.warframe.com Archon Shard page (bonus values, Tauforged multipliers)",
+  "itemku.com Warframe build guide 2026 (Steel Path priorities)",
+  "immortalboost.com weapon + build guide (June 2026)",
+  "api.warframestat.us /mods and /warframes (name validation, stats, abilities)",
+  "wiki.warframe.com Helminth subsume table (cross-checked against each frame's real ability list)"
+ ],
+ "shards": {
+  "note": "Tauforged shards give roughly 1.5x the listed value. Five slots per frame; archon shards are the single biggest endgame stat jump outside arcanes.",
+  "Crimson": [
+   "+10% Ability Strength",
+   "+10% Ability Duration",
+   "+25% Melee Critical Damage",
+   "+25% Primary Status Chance",
+   "+25% Secondary Critical Chance"
+  ],
+  "Azure": [
+   "+150 Max Health",
+   "+150 Shield Capacity",
+   "+150 Armor",
+   "+50 Energy Max",
+   "+5 Health/s Regeneration"
+  ],
+  "Amber": [
+   "+30% Max Energy filled on spawn",
+   "+25% Casting Speed",
+   "+100% Health Orb effectiveness",
+   "+50% Energy Orb effectiveness",
+   "+15% Parkour Velocity"
+  ],
+  "Violet": [
+   "+30% Primary Electricity Damage",
+   "+25% Melee Critical Damage (doubles above 500 max energy)",
+   "+10% Ability Damage vs Electricity status",
+   "Health pickups grant energy and vice versa"
+  ],
+  "Emerald": [
+   "Toxin status deals +30% damage",
+   "+2 Health per Toxin status application",
+   "+10% Ability Damage vs Corrosion status",
+   "+2 max Corrosion stacks"
+  ],
+  "Topaz": [
+   "+1 Max Health per Blast kill (cap 300)",
+   "+5 Shield on Blast status",
+   "Secondary Crit Chance +1% per Heat kill (max 50%)",
+   "+10% Ability Damage vs Radiation status"
+  ]
+ },
+ "universal": {
+  "survivability": [
+   "Vitality or Primed Vigor for health",
+   "Adaptation for scaling damage resistance",
+   "Rolling Guard to break control and shed status",
+   "Primed Flow for the energy pool",
+   "Arcane Grace or Arcane Guardian on the frame"
+  ],
+  "auras": [
+   "Corrosive Projection for armour reduction",
+   "Growing Power for a strength burst",
+   "Steel Charge for melee",
+   "Energy Siphon when you have no other energy economy"
+  ],
+  "energy": [
+   "Arcane Energize",
+   "Zenurik focus school (Wellspring)",
+   "Equilibrium with health orb sources",
+   "Molt Efficiency for duration"
+  ],
+  "steel_path": "Armour is the wall in Steel Path. Strip it (Corrosive, Heat, or an ability) or bypass it, then Viral multiplies what you do to health. Galvanized mods and Merciless-class arcanes assume you are killing steadily to hold their stacks."
+ },
+ "companions": {
+  "note": "Companions die instantly at high level unless they are built to survive or built to never be shot. The Bond mods are the modern reason to bring one.",
+  "survival": [
+   "Link Vitality",
+   "Link Redirection",
+   "Link Fiber",
+   "Medi-Ray on a sentinel",
+   "Sacrifice for a revive"
+  ],
+  "utility": [
+   "Primed Animal Instinct for loot radar",
+   "Vacuum on sentinels",
+   "Fetch on pets",
+   "Synth Deconstruct with Equilibrium for energy",
+   "Synth Fiber"
+  ],
+  "bonds": [
+   "Manifold Bond",
+   "Duplex Bond",
+   "Reinforced Bond",
+   "Contagious Bond",
+   "Momentous Bond"
+  ],
+  "picks": {
+   "Panzer Vulpaphyla": "the default survivability pick — it self-revives and its Viral spores prime everything",
+   "Smeeta Kavat": "Charm buffs, still the farming companion",
+   "Helios": "scans for the codex automatically",
+   "Djinn": "Reawaken makes it effectively immortal"
+  }
+ },
+ "frames": {
+  "Ash": {
+   "stats": "Strength and Efficiency, Range for Blade Storm marks",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Streamline",
+    "Stretch",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Seeking Shuriken"
+   ],
+   "shards": "Crimson Strength",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "Roar over Smoke Screen if you want damage",
+   "note": "Seeking Shuriken strips armour cheaply — that is Ash's real endgame contribution."
+  },
+  "Atlas": {
+   "stats": "Strength and a little Range; his armour is the survivability",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation",
+    "Umbral Fiber"
+   ],
+   "augments": [
+    "Path Of Statues",
+    "Rubble Heap"
+   ],
+   "shards": "Crimson Strength, Azure armour",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "Roar or Nourish",
+   "note": "Landslide scales off Strength and never misses. Petrify holds enemies still and softens armour — Atlas is a melee platform with a rock wall."
+  },
+  "Banshee": {
+   "stats": "Range and Duration, Strength for Sonar",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Augmented Sonar",
+    "Resonance"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "anything defensive — she is made of paper",
+   "note": "Sonar multiplies weapon damage on marked spots by a huge factor. Silence is the reason she is subsumed everywhere."
+  },
+  "Baruuk": {
+   "stats": "Strength, Range and Efficiency",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Endless Lullaby",
+    "Reactive Storm"
+   ],
+   "shards": "Crimson Strength",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing essential",
+   "note": "Serene Storm damage rises as Restraint falls, and Elude makes him functionally untouchable by gunfire."
+  },
+  "Caliban": {
+   "stats": "Strength and Range",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Razor Mortar"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "Sentient Wrath is armour strip plus a stagger; Lethal Progeny summons conculysts that actually tank for you."
+  },
+  "Chroma": {
+   "stats": "Strength above everything; Duration for Vex Armor",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Transient Fortitude",
+    "Primed Continuity",
+    "Umbral Fiber",
+    "Adaptation"
+   ],
+   "augments": [
+    "Afterburn",
+    "Everlasting Ward"
+   ],
+   "shards": "Crimson Strength, Azure armour",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "nothing — Vex Armor is the build",
+   "note": "Vex Armor multiplies both damage and armour from damage taken. Chroma is still one of the biggest single-target buffs in the game."
+  },
+  "Citrine": {
+   "stats": "Strength and Duration, Range to cover the squad",
+   "mods": [
+    "Umbral Intensify",
+    "Primed Continuity",
+    "Stretch",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Recrystalize",
+    "Prismatic Companion"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "nothing essential",
+   "note": "Preserving Shell is squad-wide healing that does not need line of sight — a genuinely strong support frame."
+  },
+  "Cyte-09": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing established yet",
+   "note": "A marksman frame: Seek marks targets and Neutralize rewards precise shots. Provisional profile — the community meta is still settling."
+  },
+  "Dagath": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Spectral Spirit"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "Rakshasa Kavat is a free second life — Dagath is squishier than she looks without it."
+  },
+  "Dante": {
+   "stats": "Strength and Range, Duration for overguard uptime",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Noctua Swarm"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing essential",
+   "note": "Tragedy is the damage, Dark Verse builds the stacks it consumes, and the overguard keeps the squad standing."
+  },
+  "Ember": {
+   "stats": "Strength and Range, Efficiency to manage Immolation",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Streamline",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Exothermic",
+    "Fireball Frenzy"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing essential",
+   "note": "Immolation builds heat as you fight and drains energy hard at the top — vent with Fire Blast before it caps."
+  },
+  "Equinox": {
+   "stats": "Strength and Range, Duration for the buff halves",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Peaceful Provocation",
+    "Energy Transfer"
+   ],
+   "shards": "Crimson Strength, Amber energy",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing essential",
+   "note": "Maim stores damage then releases it — build range so the stored total covers the room."
+  },
+  "Excalibur": {
+   "stats": "Strength and Efficiency, Range for Radial Blind",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Streamline",
+    "Stretch",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Chromatic Blade"
+   ],
+   "shards": "Crimson Melee Critical Damage, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "Roar for the exalted blade",
+   "note": "Chromatic Blade converts Exalted Blade damage to an element and scales status — it is the build."
+  },
+  "Follie": {
+   "stats": "Strength and Range",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "A very new frame built around illusions and perspective. Provisional profile — treat the stat priorities as a starting point."
+  },
+  "Frost": {
+   "stats": "Strength and Range, Duration for the bubble",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Umbral Vitality"
+   ],
+   "augments": [
+    "Icy Avalanche",
+    "Chilling Globe"
+   ],
+   "shards": "Crimson Strength, Azure armour",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "Roar or Nourish",
+   "note": "Icy Avalanche gives the squad overguard, which is far better than the old bubble-camping playstyle."
+  },
+  "Gara": {
+   "stats": "Strength and Duration, Range for the glass wall",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Stretch",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Mending Splinters",
+    "Shattered Storm"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "Roar to multiply Splinter Storm",
+   "note": "Splinter Storm damage is stored from Shattered Lash — refresh it before the timer, never let it lapse."
+  },
+  "Garuda": {
+   "stats": "Strength and Range",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Blending Talons"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "Dread Mirror stores a slice of enemy health as damage — Garuda scales off staying aggressive."
+  },
+  "Gauss": {
+   "stats": "Strength and Duration, Efficiency to hold the battery",
+   "mods": [
+    "Umbral Intensify",
+    "Primed Continuity",
+    "Streamline",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Thermal Transfer"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "Keep the battery in the red band for the damage bonus; Kinetic Plating is the survivability."
+  },
+  "Grendel": {
+   "stats": "Strength and Duration, Efficiency for the drain",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Streamline",
+    "Umbral Vitality",
+    "Adaptation"
+   ],
+   "augments": [
+    "Hearty Nourishment"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "keep Nourish — it is the best donation in the game",
+   "note": "Nourish gives Viral damage, energy and healing at once, which is why everyone subsumes it elsewhere."
+  },
+  "Gyre": {
+   "stats": "Strength and Range, Duration to hold Cathode Grace",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Cathode Current"
+   ],
+   "shards": "Crimson Strength, Violet for the electric synergy",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "nothing essential",
+   "note": "Rotorswell doubles crit chance while active — the whole frame is built around keeping it up."
+  },
+  "Harrow": {
+   "stats": "Duration and Strength, Efficiency to keep casting",
+   "mods": [
+    "Primed Continuity",
+    "Umbral Intensify",
+    "Streamline",
+    "Primed Flow",
+    "Constitution"
+   ],
+   "augments": [
+    "Tribunal"
+   ],
+   "shards": "Crimson Strength, Amber energy",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "nothing essential",
+   "note": "Covenant converts damage taken into crit chance for the squad — time it against incoming fire, not on cooldown."
+  },
+  "Hildryn": {
+   "stats": "Strength and Range; shields replace energy entirely",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Redirection",
+    "Adaptation"
+   ],
+   "augments": [
+    "Blazing Pillage"
+   ],
+   "shards": "Azure shields, Crimson Strength",
+   "arcanes": [
+    "Arcane Aegis",
+    "Arcane Guardian"
+   ],
+   "helminth": "Pillage is itself the best Helminth donation in the game",
+   "note": "Abilities cost shields, so Flow and energy mods do nothing. Shield capacity is your ability pool."
+  },
+  "Hydroid": {
+   "stats": "Strength and Range",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Pilfering Swarm",
+    "Rousing Plunder"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "Roar or Nourish",
+   "note": "Plunder strips armour and stacks corrosive onto him as a damage buff — the reworked Hydroid is genuinely strong."
+  },
+  "Inaros": {
+   "stats": "Strength and Range; huge health, no shields",
+   "mods": [
+    "Umbral Vitality",
+    "Umbral Fiber",
+    "Adaptation",
+    "Primed Flow",
+    "Equilibrium"
+   ],
+   "augments": [
+    "Negation Armor",
+    "Elemental Sandstorm"
+   ],
+   "shards": "Azure health and armour",
+   "arcanes": [
+    "Arcane Grace",
+    "Arcane Guardian"
+   ],
+   "helminth": "Gloom for lifesteal and slow",
+   "note": "No shields means status lands on you constantly — Negation Swarm or Rolling Guard is not optional at high level."
+  },
+  "Ivara": {
+   "stats": "Duration and Efficiency, Range for Prowl",
+   "mods": [
+    "Primed Continuity",
+    "Streamline",
+    "Stretch",
+    "Primed Flow",
+    "Constitution"
+   ],
+   "augments": [
+    "Piercing Navigator",
+    "Empowered Quiver"
+   ],
+   "shards": "Amber energy, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "nothing essential — Prowl is the kit",
+   "note": "Prowl is true invisibility with a loot bonus. Efficiency keeps the drain survivable while moving."
+  },
+  "Jade": {
+   "stats": "Strength and Duration, Range for the beams",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Jade's Judgment"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "Ophanim Eyes is a persistent beam that debuffs and heals; Glory On High is the flight-and-damage window. Provisional profile."
+  },
+  "Khora": {
+   "stats": "Strength and Range, with enough Duration to hold the dome",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Transient Fortitude",
+    "Stretch",
+    "Overextended",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Pilfering Strangledome",
+    "Accumulating Whipclaw"
+   ],
+   "shards": "Crimson for Ability Strength; Azure if you want more survivability",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing essential — the kit is self-contained",
+   "note": "Whipclaw reads the mods on your equipped melee (a stat stick). Strangledome groups the room and Whipclaw hits everything caught in it."
+  },
+  "Koumei": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Kumihimo Loading",
+    "Omikuji's Fortune"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "nothing established yet",
+   "note": "Koumei runs on dice rolls — Omamori grants status immunity on a chance, so Duration keeps the rolls coming. Provisional profile."
+  },
+  "Kullervo": {
+   "stats": "Strength and Range",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Wrath Of Ukko",
+    "Volatile Recompense"
+   ],
+   "shards": "Crimson Melee Critical Damage, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "Gloom for slow and lifesteal",
+   "note": "Wrathful Advance is a teleport plus a huge guaranteed crit buff — open every fight with it."
+  },
+  "Lavos": {
+   "stats": "Strength and Range; he has no energy, only cooldowns",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Adaptation"
+   ],
+   "augments": [
+    "Valence Formation",
+    "Swift Bite"
+   ],
+   "shards": "Crimson Strength, Amber casting speed",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "anything — cooldowns mean no energy problems",
+   "note": "Lavos ignores energy entirely, so Flow and Streamline do nothing. Casting speed is his real stat."
+  },
+  "Limbo": {
+   "stats": "Duration and Range, Efficiency to hold the rift",
+   "mods": [
+    "Primed Continuity",
+    "Constitution",
+    "Umbral Intensify",
+    "Primed Flow",
+    "Streamline",
+    "Stretch"
+   ],
+   "augments": [
+    "Cataclysmic Continuum",
+    "Rift Haven"
+   ],
+   "shards": "Amber energy, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Grace"
+   ],
+   "helminth": "anything offensive",
+   "note": "Cataclysm plus Stasis freezes an entire room. Be careful in squads — rifting allies' targets is how Limbo earns his reputation."
+  },
+  "Loki": {
+   "stats": "Duration and Range, Efficiency to spam",
+   "mods": [
+    "Primed Continuity",
+    "Constitution",
+    "Stretch",
+    "Streamline",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Irradiating Disarm"
+   ],
+   "shards": "Amber energy, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Grace"
+   ],
+   "helminth": "anything offensive — Loki brings none",
+   "note": "Radial Disarm turns gunfire into melee, which is still one of the strongest crowd controls in the game."
+  },
+  "Mag": {
+   "stats": "Strength and Range",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Overextended",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Greedy Pull",
+    "Magnetized Discharge"
+   ],
+   "shards": "Crimson Strength, Azure shields",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "Magnetize is a damage amplifier: shoot into the bubble and everything inside takes it."
+  },
+  "Mesa": {
+   "stats": "Strength and Duration, Efficiency for Peacemaker uptime",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Streamline",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Mesa's Waltz"
+   ],
+   "shards": "Crimson Strength, Amber casting speed",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Avenger"
+   ],
+   "helminth": "Roar or Eclipse for a damage multiplier",
+   "note": "Shooting Gallery is the survivability, not an afterthought. Peacemaker drains harder the longer you hold it."
+  },
+  "Mirage": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Explosive Legerdemain",
+    "Hall Of Malevolence"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing — Eclipse is the prize",
+   "note": "Hall of Mirrors multiplies your weapon output; Eclipse is the buff everyone else subsumes off her."
+  },
+  "Nekros": {
+   "stats": "Range and Efficiency, moderate Strength",
+   "mods": [
+    "Stretch",
+    "Overextended",
+    "Streamline",
+    "Primed Flow",
+    "Primed Continuity",
+    "Equilibrium"
+   ],
+   "augments": [
+    "Despoil"
+   ],
+   "shards": "Azure health, Amber energy orb effectiveness",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "Gloom pairs beautifully with Despoil health drain",
+   "note": "Despoil turns Desecrate into a health cost, which Equilibrium then refunds as energy — that loop is the whole farming build."
+  },
+  "Nezha": {
+   "stats": "Strength and Range, Duration for Warding Halo",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Safeguard",
+    "Pyroclastic Flow"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "Roar or Nourish",
+   "note": "Warding Halo scales off Strength and armour — recast it before it breaks, not after."
+  },
+  "Nidus": {
+   "stats": "Strength and Range, Duration for Larva",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Parasitic Vitality",
+    "Insatiable"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "nothing essential — mutation stacks are the kit",
+   "note": "Stacks are everything: Larva groups, Virulence feeds, and Undying means you cannot really die once stacked."
+  },
+  "Nokko": {
+   "stats": "Strength and Range",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Reroot Rampage"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing established yet",
+   "note": "The newest frame; its kit revolves around spores and regrowth. Provisional profile and no documented Helminth donation yet."
+  },
+  "Nova": {
+   "stats": "Strength for a speed nova, or negative Strength for a slow nova",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Overextended",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Molecular Fission"
+   ],
+   "shards": "Crimson Strength",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing essential",
+   "note": "Molecular Prime above 100% Strength speeds enemies up; below it slows them. Decide which nova you are before modding."
+  },
+  "Nyx": {
+   "stats": "Range and Duration, Strength for Absorb",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Assimilate",
+    "Chaos Sphere"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "Roar or Eclipse for damage",
+   "note": "Psychic Bolts strips armour and shields on a wide radius — that, not Chaos, is why Nyx still shows up in Steel Path."
+  },
+  "Oberon": {
+   "stats": "Strength and Range, Duration for Renewal",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Umbral Vitality"
+   ],
+   "augments": [
+    "Phoenix Renewal",
+    "Hallowed Eruption"
+   ],
+   "shards": "Crimson Strength, Azure armour",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "Roar or Nourish",
+   "note": "Hallowed Ground plus Renewal gives the squad status immunity and armour — a genuinely good support."
+  },
+  "Octavia": {
+   "stats": "Duration above all, then Strength",
+   "mods": [
+    "Primed Continuity",
+    "Constitution",
+    "Umbral Intensify",
+    "Primed Flow",
+    "Narrow Minded"
+   ],
+   "augments": [
+    "Conductor"
+   ],
+   "shards": "Crimson Duration, Amber casting speed",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "anything — the kit already trivialises most content",
+   "note": "Mallet damage scales off what enemies shoot into it. Amp and Metronome make the whole squad's numbers bigger."
+  },
+  "Oraxia": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing established yet",
+   "note": "Spider-themed: Widow's Brood summons, Webbed Embrace controls. Silken Stride is the Helminth donation. Provisional profile."
+  },
+  "Orion & Sirius": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "nothing established yet",
+   "note": "The other half of the Update 43 dual Warframe. Provisional profile."
+  },
+  "Protea": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Streamline"
+   ],
+   "augments": [
+    "Repair Dispensary"
+   ],
+   "shards": "Crimson Strength, Amber casting speed",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "Temporal Anchor rewinds you — treat it as a free undo on a mistake, and Dispensary solves energy for the squad."
+  },
+  "Qorvex": {
+   "stats": "Strength and Range",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Fused Crucible",
+    "Wrecking Wall"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "Containment Wall pins enemies and Crucible Blast detonates the pillars — radiation procs make everything hit itself."
+  },
+  "Revenant": {
+   "stats": "Duration and Range, Strength for Danse Macabre",
+   "mods": [
+    "Primed Continuity",
+    "Stretch",
+    "Umbral Intensify",
+    "Primed Flow",
+    "Constitution"
+   ],
+   "augments": [
+    "Mesmer Shield"
+   ],
+   "shards": "Crimson Strength, Azure energy",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "Roar or Eclipse to multiply Danse Macabre",
+   "note": "Mesmer Skin is functional invulnerability — count the charges, not the health bar."
+  },
+  "Rhino": {
+   "stats": "Strength, then Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Umbral Fiber"
+   ],
+   "augments": [
+    "Iron Shrapnel",
+    "Piercing Roar"
+   ],
+   "shards": "Crimson Strength",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "nothing needed early; Eclipse later",
+   "note": "Roar is a damage multiplier for the whole squad and one of the best Helminth abilities in the game."
+  },
+  "Saryn": {
+   "stats": "Strength and Duration, Range for spore spread",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Stretch",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Venom Dose",
+    "Regenerative Molt"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "swap Molt for something if you prefer, but Molt feeds Regenerative Molt",
+   "note": "Spores scale off enemy count, not raw damage — spread first, then let Miasma prime the corrosive."
+  },
+  "Sevagoth": {
+   "stats": "Strength and Range, Duration for Gloom",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Dark Propagation"
+   ],
+   "shards": "Crimson Strength, Azure energy",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "keep Gloom — it is the reason to play him",
+   "note": "Gloom slows everything and heals you per kill. The Shadow is the damage; Sevagoth himself is the platform."
+  },
+  "Sirius & Orion": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing established yet",
+   "note": "The dual Warframe from Update 43 — you swap between the pair, and Celestial Clash is the shared finisher. Provisional profile."
+  },
+  "Styanax": {
+   "stats": "Strength and Range, Duration for Rally Point",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Axios Javelineers",
+    "Intrepid Stand"
+   ],
+   "shards": "Crimson Strength, Azure shields",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "nothing — Tharros Strike is the donation everyone wants",
+   "note": "Tharros Strike strips armour and shields instantly and refunds shields per enemy hit. Final Stand is the damage."
+  },
+  "Temple": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Rhythm Guard"
+   ],
+   "shards": "Crimson Strength, Amber casting speed",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "nothing established yet",
+   "note": "A performance frame with an exalted weapon (Exalted Solo) and squad buffs through Overdrive. Provisional profile."
+  },
+  "Titania": {
+   "stats": "Duration and Strength, Efficiency for Razorwing uptime",
+   "mods": [
+    "Primed Continuity",
+    "Umbral Intensify",
+    "Streamline",
+    "Primed Flow",
+    "Constitution"
+   ],
+   "augments": [
+    "Razorwing Blitz"
+   ],
+   "shards": "Crimson Strength, Amber energy",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "anything utility — Razorwing is the build",
+   "note": "Dex Pixia is a secondary-weapon exalted, so it uses secondary mods and arcanes."
+  },
+  "Trinity": {
+   "stats": "Duration and Efficiency, Strength for Blessing",
+   "mods": [
+    "Primed Continuity",
+    "Streamline",
+    "Umbral Intensify",
+    "Primed Flow",
+    "Constitution"
+   ],
+   "augments": [
+    "Abating Link"
+   ],
+   "shards": "Crimson Strength, Amber energy",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "anything offensive",
+   "note": "Abating Link strips armour while Link keeps her alive — the classic support build still works."
+  },
+  "Uriel": {
+   "stats": "Strength and Range",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "nothing established yet",
+   "note": "Infernal kit with Remedium as sustain and Brimstone as the damage window. Provisional profile."
+  },
+  "Valkyr": {
+   "stats": "Strength and Duration, Efficiency for Hysteria",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Streamline",
+    "Umbral Fiber",
+    "Adaptation"
+   ],
+   "augments": [
+    "Hysterical Assault",
+    "Swing Line"
+   ],
+   "shards": "Crimson Melee Critical Damage, Azure armour",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "Roar or Gloom",
+   "note": "Hysteria is invulnerability with a lifesteal exalted claw. Warcry is the squad buff and the reason she is subsumed."
+  },
+  "Vauban": {
+   "stats": "Strength and Range, Duration for Bastille",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Enduring Bastille",
+    "Photon Repeater"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "anything mobile — he is stationary by nature",
+   "note": "Bastille strips armour while it holds enemies, and Vortex groups them into a single point for area weapons."
+  },
+  "Volt": {
+   "stats": "Strength and Duration, Range for the shield",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Stretch",
+    "Primed Flow"
+   ],
+   "augments": [
+    "Shock Trooper",
+    "Transistor Shield"
+   ],
+   "shards": "Crimson Strength, Violet for electric synergy",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "Roar for a straight multiplier",
+   "note": "Shields double crit damage for shots fired through them — that is why Volt is an Eidolon frame."
+  },
+  "Voruna": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Ulfrun's Endurance"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "nothing essential",
+   "note": "Fangs of Raksh strips armour, which is exactly what Steel Path asks for."
+  },
+  "Wisp": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Stretch",
+    "Adaptation"
+   ],
+   "augments": [
+    "Fused Reservoir"
+   ],
+   "shards": "Crimson Strength",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "Roar or Eclipse over Breach Surge for damage",
+   "note": "Motes are the whole frame: haste, health and shock. Drop them before you fight, not during."
+  },
+  "Wukong": {
+   "stats": "Duration and Strength, Efficiency for Cloud Walker",
+   "mods": [
+    "Primed Continuity",
+    "Constitution",
+    "Umbral Intensify",
+    "Primed Flow",
+    "Streamline",
+    "Adaptation"
+   ],
+   "augments": [
+    "Celestial Stomp",
+    "Enveloping Cloud"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Guardian"
+   ],
+   "helminth": "nothing essential",
+   "note": "Defy used to be immortality; it is now a timed damage window. Celestial Twin fights alongside you and is the subsume donation."
+  },
+  "Xaku": {
+   "stats": "Strength, Range and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Stretch",
+    "Primed Continuity",
+    "Primed Flow"
+   ],
+   "augments": [
+    "The Relentless Lost"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Molt Augmented"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "The Lost strips armour and Xata's Whisper adds void damage to your guns — it is a weapons platform as much as a caster."
+  },
+  "Yareli": {
+   "stats": "Strength and Duration",
+   "mods": [
+    "Umbral Intensify",
+    "Blind Rage",
+    "Primed Continuity",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Loyal Merulina",
+    "Merulina Guardian"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "Roar or Eclipse",
+   "note": "Merulina is damage reduction you ride; Aquablades and Sea Snares do the work while you stay mounted."
+  },
+  "Zephyr": {
+   "stats": "Range and Duration, Strength for Tornado",
+   "mods": [
+    "Stretch",
+    "Primed Continuity",
+    "Umbral Intensify",
+    "Primed Flow",
+    "Adaptation"
+   ],
+   "augments": [
+    "Funnel Clouds",
+    "Airburst Rounds"
+   ],
+   "shards": "Crimson Strength, Azure health",
+   "arcanes": [
+    "Arcane Energize",
+    "Arcane Aegis"
+   ],
+   "helminth": "Roar or Nourish",
+   "note": "Turbulence deflects almost all incoming fire — that alone carries Steel Path survivability."
+  }
+ },
+ "subsumable": [
+  {
+   "ability": "Shuriken",
+   "from": "Ash",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Petrify",
+   "from": "Atlas",
+   "augment": "",
+   "why": "freezes enemies solid and pairs with armour strip"
+  },
+  {
+   "ability": "Silence",
+   "from": "Banshee",
+   "augment": "",
+   "why": "stuns everything that enters range"
+  },
+  {
+   "ability": "Lull",
+   "from": "Baruuk",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Sentient Wrath",
+   "from": "Caliban",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Elemental Ward",
+   "from": "Chroma",
+   "augment": "",
+   "why": "big health or shield buff depending on element"
+  },
+  {
+   "ability": "Fractured Blast",
+   "from": "Citrine",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Evade",
+   "from": "Cyte-09",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Wyrd Scythes",
+   "from": "Dagath",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Dark Verse",
+   "from": "Dante",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Fire Blast",
+   "from": "Ember",
+   "augment": "",
+   "why": "armour strip on a ring of fire"
+  },
+  {
+   "ability": "Rest & Rage",
+   "from": "Equinox",
+   "augment": "",
+   "why": "sleep for stealth multipliers, or a damage debuff"
+  },
+  {
+   "ability": "Radial Blind",
+   "from": "Excalibur",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Self Portrait",
+   "from": "Follie",
+   "augment": "",
+   "why": "from the wiki subsume table"
+  },
+  {
+   "ability": "Ice Wave",
+   "from": "Frost",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Spectrorage",
+   "from": "Gara",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Blood Altar",
+   "from": "Garuda",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Thermal Sunder",
+   "from": "Gauss",
+   "augment": "",
+   "why": "stacking cold and heat for big area damage"
+  },
+  {
+   "ability": "Nourish",
+   "from": "Grendel",
+   "augment": "",
+   "why": "turns your damage Viral and fixes energy at the same time"
+  },
+  {
+   "ability": "Coil Horizon",
+   "from": "Gyre",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Condemn",
+   "from": "Harrow",
+   "augment": "",
+   "why": "shields on cast plus crowd control"
+  },
+  {
+   "ability": "Pillage",
+   "from": "Hildryn",
+   "augment": "",
+   "why": "strips armour and shields and refills your own shields"
+  },
+  {
+   "ability": "Tempest Barrage",
+   "from": "Hydroid",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Desiccation",
+   "from": "Inaros",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Quiver",
+   "from": "Ivara",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Ophanim Eyes",
+   "from": "Jade",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Ensnare",
+   "from": "Khora",
+   "augment": "",
+   "why": "groups enemies for anything that hits an area"
+  },
+  {
+   "ability": "Omamori",
+   "from": "Koumei",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Wrathful Advance",
+   "from": "Kullervo",
+   "augment": "",
+   "why": "teleport plus a large guaranteed crit buff"
+  },
+  {
+   "ability": "Vial Rush",
+   "from": "Lavos",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Banish",
+   "from": "Limbo",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Decoy",
+   "from": "Loki",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Pull",
+   "from": "Mag",
+   "augment": "",
+   "why": "cheap grouping on a very low energy cost"
+  },
+  {
+   "ability": "Shooting Gallery",
+   "from": "Mesa",
+   "augment": "",
+   "why": "damage buff and weapon jamming"
+  },
+  {
+   "ability": "Eclipse",
+   "from": "Mirage",
+   "augment": "",
+   "why": "huge damage buff in light, damage reduction in shadow"
+  },
+  {
+   "ability": "Soul Punch",
+   "from": "Nekros",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Fire Walker",
+   "from": "Nezha",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Parasitic Link",
+   "from": "Nidus",
+   "augment": "",
+   "why": "strength buff and damage sharing"
+  },
+  {
+   "ability": "Null Star",
+   "from": "Nova",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Psychic Bolts",
+   "from": "Nyx",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Hallowed Ground",
+   "from": "Oberon",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Amp",
+   "from": "Octavia",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Silken Stride",
+   "from": "Oraxia",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Dispensary",
+   "from": "Protea",
+   "augment": "",
+   "why": "drops energy and health pickups on a timer"
+  },
+  {
+   "ability": "Containment Wall",
+   "from": "Qorvex",
+   "augment": "",
+   "why": "radiation pillars that also block a lane"
+  },
+  {
+   "ability": "Enthrall",
+   "from": "Revenant",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Roar",
+   "from": "Rhino",
+   "augment": "",
+   "why": "a flat damage multiplier for you and the squad — the default pick"
+  },
+  {
+   "ability": "Spores",
+   "from": "Saryn",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Gloom",
+   "from": "Sevagoth",
+   "augment": "",
+   "why": "slows everything nearby and heals you on kills"
+  },
+  {
+   "ability": "Tharros Strike",
+   "from": "Styanax",
+   "augment": "",
+   "why": "instant armour and shield strip in a cone"
+  },
+  {
+   "ability": "Ripper's Wail",
+   "from": "Temple",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Spellbind",
+   "from": "Titania",
+   "augment": "",
+   "why": "status immunity for you and allies"
+  },
+  {
+   "ability": "Energy Vampire",
+   "from": "Trinity",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Demonium",
+   "from": "Uriel",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Warcry",
+   "from": "Valkyr",
+   "augment": "",
+   "why": "attack speed and armour for the squad"
+  },
+  {
+   "ability": "Tesla Nervos",
+   "from": "Vauban",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Shock",
+   "from": "Volt",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Fangs Of Raksh",
+   "from": "Voruna",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Reservoirs",
+   "from": "Wisp",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Celestial Twin",
+   "from": "Wukong",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "The Lost",
+   "from": "Xaku",
+   "augment": "",
+   "why": "strips armour (Gaze) — Xaku's flexible donation"
+  },
+  {
+   "ability": "Merulina",
+   "from": "Yareli",
+   "augment": "",
+   "why": ""
+  },
+  {
+   "ability": "Airburst",
+   "from": "Zephyr",
+   "augment": "",
+   "why": ""
+  }
+ ],
+ "subsumable_note": "Every warframe donates exactly one ability. Each pair was cross-checked against that frame's real ability list, which rejected 7 wrong entries from the source table. Not yet covered: Nokko. Necramechs cannot be subsumed.",
+ "meta_note": "Current game state: Update 43 Jade Shadows: Constellations (17 Jun 2026), hotfix 43.0.8. Nidus received an ability retouch in U43. Sirius & Orion is the new dual Warframe from that update; its Helminth donation is not documented yet.",
+ "weapon_builds": {
+  "primary_crit": {
+   "stats": "Crit chance and crit damage, then Viral to multiply what lands",
+   "mods": [
+    "Serration",
+    "Galvanized Chamber",
+    "Point Strike",
+    "Vital Sense",
+    "Hunter Munitions",
+    "Malignant Force",
+    "Rime Rounds",
+    "Galvanized Aptitude"
+   ],
+   "exilus": "Vigilante Supplies",
+   "arcanes": [
+    "Primary Merciless",
+    "Primary Deadhead"
+   ],
+   "note": "Hunter Munitions turns crits into Slash procs, which bypass armour entirely — on a crit rifle that is usually more damage than any elemental you could add. Malignant Force plus Rime Rounds makes Viral while keeping the status chance high enough to feed Galvanized Aptitude."
+  },
+  "primary_status": {
+   "stats": "Saturate status, then let Viral and Galvanized Aptitude multiply it",
+   "mods": [
+    "Serration",
+    "Galvanized Chamber",
+    "Galvanized Aptitude",
+    "Malignant Force",
+    "Rime Rounds",
+    "Thermite Rounds",
+    "High Voltage",
+    "Vital Sense"
+   ],
+   "exilus": "Vigilante Supplies",
+   "arcanes": [
+    "Primary Merciless",
+    "Primary Blight"
+   ],
+   "note": "Four dual-stat mods give Viral plus a second element and push status chance past 100%, where Galvanized Aptitude pays +40% damage per status type on the target."
+  },
+  "primary_raw": {
+   "stats": "Nothing to scale, so multiply the base",
+   "mods": [
+    "Serration",
+    "Galvanized Chamber",
+    "Malignant Force",
+    "Rime Rounds",
+    "Thermite Rounds",
+    "High Voltage",
+    "Vital Sense",
+    "Point Strike"
+   ],
+   "exilus": "Terminal Velocity",
+   "arcanes": [
+    "Primary Merciless"
+   ],
+   "note": "With neither crit nor status standing out, damage and multishot are the whole build — Viral still does the heavy lifting against health."
+  },
+  "shotgun_crit": {
+   "stats": "Crit and multishot; every pellet is its own damage and status roll",
+   "mods": [
+    "Primed Point Blank",
+    "Galvanized Hell",
+    "Blunderbuss",
+    "Ravage",
+    "Galvanized Savvy",
+    "Chilling Grasp",
+    "Toxic Barrage",
+    "Hunter Munitions"
+   ],
+   "exilus": "Vigilante Supplies",
+   "arcanes": [
+    "Primary Merciless",
+    "Primary Deadhead"
+   ],
+   "note": "Shotgun status is per pellet, so multishot raises damage and proc count together. Chilling Grasp with Toxic Barrage makes Viral."
+  },
+  "shotgun_status": {
+   "stats": "Status per pellet, which climbs fast on a shotgun",
+   "mods": [
+    "Primed Point Blank",
+    "Galvanized Hell",
+    "Galvanized Savvy",
+    "Chilling Grasp",
+    "Toxic Barrage",
+    "Scattering Inferno",
+    "Shell Shock",
+    "Blunderbuss"
+   ],
+   "exilus": "Vigilante Supplies",
+   "arcanes": [
+    "Primary Merciless",
+    "Primary Blight"
+   ],
+   "note": "A shotgun rolls status once per pellet, so it saturates a target faster than any other weapon class."
+  },
+  "secondary_crit": {
+   "stats": "Crit chance and crit damage, with Lethal Torrent for both fire rate and multishot",
+   "mods": [
+    "Hornet Strike",
+    "Galvanized Diffusion",
+    "Lethal Torrent",
+    "Primed Pistol Gambit",
+    "Primed Target Cracker",
+    "Galvanized Shot",
+    "Frostbite",
+    "Pistol Pestilence"
+   ],
+   "exilus": "Primed Quickdraw",
+   "arcanes": [
+    "Secondary Merciless",
+    "Secondary Deadhead"
+   ],
+   "note": "Primed Pistol Gambit and Primed Target Cracker are the real pistol crit pair. Frostbite with Pistol Pestilence makes Viral."
+  },
+  "secondary_status": {
+   "stats": "Status first — secondaries are the game's best primers",
+   "mods": [
+    "Hornet Strike",
+    "Galvanized Diffusion",
+    "Galvanized Shot",
+    "Frostbite",
+    "Pistol Pestilence",
+    "Scorch",
+    "Jolt",
+    "Lethal Torrent"
+   ],
+   "exilus": "Primed Quickdraw",
+   "arcanes": [
+    "Secondary Merciless",
+    "Secondary Outburst"
+   ],
+   "note": "A saturating secondary sets up everything else you carry: prime with status, then let the primary or melee collect."
+  },
+  "melee_crit": {
+   "stats": "Combo-scaled crit — the highest damage ceiling in the game",
+   "mods": [
+    "Primed Pressure Point",
+    "Blood Rush",
+    "Weeping Wounds",
+    "Condition Overload",
+    "Organ Shatter",
+    "Primed Reach",
+    "Vicious Frost",
+    "Virulent Scourge"
+   ],
+   "exilus": "",
+   "arcanes": [
+    "Melee Exposure",
+    "Melee Influence"
+   ],
+   "note": "Blood Rush turns combo count into crit chance and Weeping Wounds turns it into status chance; Condition Overload then pays per status type. Reach is a damage stat here — it decides how many enemies each swing touches."
+  },
+  "melee_status": {
+   "stats": "Status types stacked, then Condition Overload multiplies per type",
+   "mods": [
+    "Primed Pressure Point",
+    "Condition Overload",
+    "Weeping Wounds",
+    "Blood Rush",
+    "Primed Reach",
+    "Vicious Frost",
+    "Virulent Scourge",
+    "Voltaic Strike"
+   ],
+   "exilus": "",
+   "arcanes": [
+    "Melee Exposure",
+    "Melee Influence"
+   ],
+   "note": "Condition Overload counts distinct status types on the target, so spreading several elements beats stacking one hard."
+  },
+  "melee_heavy": {
+   "stats": "One enormous swing: crit damage and heavy efficiency",
+   "mods": [
+    "Primed Pressure Point",
+    "Killing Blow",
+    "Corrupt Charge",
+    "Organ Shatter",
+    "Sacrificial Steel",
+    "Primed Reach",
+    "Primed Fever Strike",
+    "Vicious Frost"
+   ],
+   "exilus": "",
+   "arcanes": [
+    "Melee Crescendo",
+    "Melee Duplicate"
+   ],
+   "note": "Heavy attacks spend the combo counter as a crit multiplier. Corrupt Charge starts you with combo so the first swing already hits hard."
+  }
+ },
+ "companion_builds": {
+  "survivability": {
+   "stats": "Keep it alive, then let the Bond mods do the work",
+   "mods": [
+    "Link Vitality",
+    "Link Redirection",
+    "Link Fiber",
+    "Primed Animal Instinct",
+    "Manifold Bond",
+    "Reinforced Bond",
+    "Contagious Bond",
+    "Tenacious Bond"
+   ],
+   "arcanes": [],
+   "note": "Link mods scale off YOUR frame's health, shields and armour, so a tanky frame makes the companion tanky too. The Bond mods are the modern reason to bring a companion at all — Contagious Bond spreads your status, Reinforced Bond feeds shield gating."
+  }
+ },
+ "damage_mechanics": {
+  "note": "The numbers Steel Path builds are actually built around. Every figure here is from the official wiki's own formula tables, not from memory.",
+  "sources": [
+   "wiki.warframe.com Armor (damage-reduction formulas)",
+   "wiki.warframe.com Damage/Viral, Damage/Corrosive, Damage/Heat (stack counts and percentages)",
+   "wiki.warframe.com Shield Gating"
+  ],
+  "armor": {
+   "enemy_formula": "Damage reduction = 90% x armor / 2700, so 2700 armor is the 90% ceiling",
+   "player_formula": "Damage reduction = armor / (armor + 300) — 300 armor is 50%, 600 is 67%, 900 is 75%",
+   "why": "Armour is the wall in Steel Path because it multiplies effective health rather than adding to it. Removing it is worth more than any damage mod you could fit in the same slot."
+  },
+  "status": [
+   {
+    "proc": "Viral",
+    "effect": "x2 damage to health at 1 stack, rising 25% per stack to x4.25 at 10",
+    "duration": "6s per stack, 10 stack cap",
+    "why": "The single largest damage multiplier available to a weapon, and it applies to health — which is what is left once armour is gone."
+   },
+   {
+    "proc": "Corrosive",
+    "effect": "26% armour stripped on the first stack, +6% per stack after, 80% at the 10-stack cap",
+    "duration": "8s per stack",
+    "why": "The direct answer to armour. Corrosive Projection stacks on top multiplicatively — a full squad running it plus 10 stacks leaves roughly 3% of the original armour."
+   },
+   {
+    "proc": "Heat",
+    "effect": "strips up to 50% armour, ramping 15% / 30% / 40% / 50% over the first 2 seconds, plus damage over time",
+    "duration": "6s, refreshed by new procs; armour returns over 6s once it lapses",
+    "why": "Half the strip of Corrosive but it arrives on its own and keeps burning, which is why Viral + Heat is the default pairing rather than Viral + Corrosive."
+   }
+  ],
+  "shield_gating": {
+   "effect": "Breaking your shields grants at least 0.33s of invulnerability, longer with a bigger shield pool",
+   "recharge": "4s delay before shields restart after a full break; 1s after partial damage",
+   "why": "A large shield pool is not about absorbing damage — it is about how long the gate lasts. This is why shield-gating frames stack shields rather than health."
+  },
+  "steel_path": {
+   "effect": "Steel Path adds +100 to enemy level on top of the node's own scaling",
+   "why": "Enemies do not gain new mechanics, they gain numbers — which is exactly why armour strip and Viral matter more than raw damage mods."
+  }
+ },
+ "arcanes": {
+  "note": "A Warframe has two arcane slots, a weapon has one, and companions have none. Arcanes rank to 5, which costs 21 copies of the arcane (56 including every rank below). Max-rank numbers below are from the wiki's own tables.",
+  "slots": {
+   "warframe": 2,
+   "weapon": 1,
+   "companion": 0,
+   "note": "An Arcane Helmet costs a Warframe one of its two slots."
+  },
+  "warframe": [
+   {
+    "name": "Arcane Energize",
+    "effect": "60% chance on an energy pickup to give +150 energy to you and allies within 15m",
+    "why": "Energy is the limit on almost every ability build, and this fixes it for the whole squad. The default second slot unless the frame makes its own energy."
+   },
+   {
+    "name": "Molt Augmented",
+    "effect": "+0.24% Ability Strength per kill, up to +60% at 250 kills",
+    "why": "The largest strength bonus available to a frame, and it persists until you die rather than expiring. Slow to build, so it rewards long runs — only direct kills count, not Operator or Necramech ones."
+   },
+   {
+    "name": "Molt Efficiency",
+    "effect": "Ability Duration that builds while your shields are up",
+    "why": "Pairs with anything you refresh rather than recast — the duration granted on cast is kept even if you later lose shields and the buff switches off."
+   },
+   {
+    "name": "Arcane Guardian",
+    "effect": "15% chance when damaged to give +900 armour for 20s",
+    "why": "Roughly doubles the effective health of an armoured frame, and it triggers constantly in Steel Path because you are always being hit."
+   },
+   {
+    "name": "Arcane Grace",
+    "effect": "9% chance on health damage to regenerate 6% health per second for 9s",
+    "why": "The health-tank counterpart to Guardian. Wants a real health pool behind it."
+   },
+   {
+    "name": "Arcane Aegis",
+    "effect": "3% chance when shields are damaged to regenerate 30% shields per second for 12s",
+    "why": "For shield-gating frames, where shields are a timer to be refilled rather than a health bar."
+   },
+   {
+    "name": "Arcane Blessing",
+    "effect": "Health added on every Health Orb pickup",
+    "why": "Only worth it on frames that make their own orbs — Nekros, Protea, Citrine, Oberon, Trinity, Nezha, Voruna."
+   },
+   {
+    "name": "Arcane Avenger",
+    "effect": "Chance on being damaged to give +45% critical chance for 12s to your weapons",
+    "why": "A weapon buff worn on the frame — it pushes a borderline crit weapon over the next crit tier."
+   }
+  ],
+  "weapon": [
+   {
+    "name": "Primary Merciless",
+    "effect": "up to +360% damage, stacking as you kill and refreshing on kills",
+    "why": "The default primary arcane: it assumes you are killing steadily, which is exactly what Steel Path looks like."
+   },
+   {
+    "name": "Secondary Merciless",
+    "effect": "the secondary version of the same kill-stacking damage bonus",
+    "why": "Same logic on a secondary, which is often the gun doing the priming."
+   },
+   {
+    "name": "Primary Deadhead",
+    "effect": "damage bonus that builds on headshot kills",
+    "why": "Beats Merciless on precision weapons where every shot is a headshot anyway."
+   },
+   {
+    "name": "Secondary Deadhead",
+    "effect": "the secondary headshot version",
+    "why": "Same trade on a precision pistol."
+   },
+   {
+    "name": "Primary Blight",
+    "effect": "adds Corrosive and status-driven damage",
+    "why": "For status primers rather than damage dealers."
+   },
+   {
+    "name": "Melee Exposure",
+    "effect": "adds Corrosive damage and armour stripping on melee hits",
+    "why": "Melee's own answer to armour, so you are not relying on a gun to strip first."
+   },
+   {
+    "name": "Melee Influence",
+    "effect": "Electricity status spreads to nearby enemies",
+    "why": "Turns a single-target melee into room clear — one of the strongest melee arcanes in the game."
+   },
+   {
+    "name": "Melee Crescendo",
+    "effect": "builds combo count on heavy attack kills",
+    "why": "The heavy-attack enabler: it refunds the combo the heavy attack just spent."
+   }
+  ],
+  "warframe_names": [
+   "Arcane Acceleration",
+   "Arcane Aegis",
+   "Arcane Agility",
+   "Arcane Arachne",
+   "Arcane Avenger",
+   "Arcane Awakening",
+   "Arcane Barrier",
+   "Arcane Battery",
+   "Arcane Bellicose",
+   "Arcane Blade Charger",
+   "Arcane Blessing",
+   "Arcane Bodyguard",
+   "Arcane Camisado",
+   "Arcane Circumvent",
+   "Arcane Concentration",
+   "Arcane Consequence",
+   "Arcane Crepuscular",
+   "Arcane Deflection",
+   "Arcane Double Back",
+   "Arcane Energize",
+   "Arcane Eruption",
+   "Arcane Escapist",
+   "Arcane Expertise",
+   "Arcane Fury",
+   "Arcane Grace",
+   "Arcane Guardian",
+   "Arcane Healing",
+   "Arcane Hot Shot",
+   "Arcane Ice",
+   "Arcane Ice Storm",
+   "Arcane Impetus",
+   "Arcane Intention",
+   "Arcane Momentum",
+   "Arcane Nullifier",
+   "Arcane Persistence",
+   "Arcane Phantasm",
+   "Arcane Pistoleer",
+   "Arcane Power Ramp",
+   "Arcane Precision",
+   "Arcane Primary Charger",
+   "Arcane Pulse",
+   "Arcane Rage",
+   "Arcane Reaper",
+   "Arcane Resistance",
+   "Arcane Rise",
+   "Arcane Sculptor",
+   "Arcane Steadfast",
+   "Arcane Strike",
+   "Arcane Tanker",
+   "Arcane Tempo",
+   "Arcane Trickery",
+   "Arcane Truculence",
+   "Arcane Ultimate",
+   "Arcane Ultimatum",
+   "Arcane Universal Fallout",
+   "Arcane Velocity",
+   "Arcane Victory",
+   "Arcane Warmth",
+   "Molt Augmented",
+   "Molt Efficiency",
+   "Molt Reconstruct",
+   "Molt Vigor",
+   "Theorem Contagion",
+   "Theorem Demulcent",
+   "Theorem Infection"
+  ],
+  "warframe_names_source": "wiki.warframe.com Arcane Enhancement — the Warframe arcane table",
+  "effects": {
+   "Arcane Acceleration": {
+    "effect": "On Critical Hit: 30% chance for +90% Fire Rate to Primary Weapons (Excludes Shotguns) for 9s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Aegis": {
+    "effect": "On Shield Damaged: 3% chance for +30% Shield Recharge for 12s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Agility": {
+    "effect": "On Damaged: 60% chance for +60% Parkour Velocity for 18s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Arachne": {
+    "effect": "On Wall Latch: +150% Damage to Primary and Secondary weapons for 30s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Avenger": {
+    "effect": "On Damaged: 21% chance for +45% Critical Chance for 12s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Awakening": {
+    "effect": "On Reload: 60% chance for +150% Damage to Pistols for 24s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Barrier": {
+    "effect": "On Shield Damaged: 6% chance to instantly restore all Shields 6s cooldown",
+    "ranks": 6,
+    "rarity": "Legendary"
+   },
+   "Arcane Battery": {
+    "effect": "Gain 0.30 maximum Energy per Armor point, up to 1000 Energy.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Bellicose": {
+    "effect": "Gain 6% Ability Strength for every 250 Max Health up to 72%.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Blade Charger": {
+    "effect": "On Primary Weapon Kill: 30% chance for +300% Melee Damage for 12s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Blessing": {
+    "effect": "On Health Pickup: +24 Max Health. Stacks up to 50x.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Bodyguard": {
+    "effect": "On 6 Melee Kills within 30s: Heal Companion for 900",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Camisado": {
+    "effect": "Attacks from summoned minions increase Ability Strength by 6% up to 60% on the next Ability Cast. Summons gain 20% Movement Speed.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Circumvent": {
+    "effect": "Roll through enemies to steal 50% of their defenses for yourself. Stolen Armor lasts 15s.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Concentration": {
+    "effect": "On Ability Cast: +60% Ability Duration for 3s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Consequence": {
+    "effect": "On Headshot: +60% Parkour Velocity for 18s",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Arcane Crepuscular": {
+    "effect": "While invisible, gain +30% Ability Strength and +3x Final Critical Damage.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Deflection": {
+    "effect": "+102% chance to resist a Slash Status effect.",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Double Back": {
+    "effect": "Gain +25% damage resistance for 4s per Dodge, Double Jump and Bullet Jump. Stacks up to 3x.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Energize": {
+    "effect": "On Energy Pickup: 60% chance to replenish 150 Energy to self and allies within 15m 15s cooldown",
+    "ranks": 6,
+    "rarity": "Legendary"
+   },
+   "Arcane Eruption": {
+    "effect": "On Energy Pickup: 100% chance to Knockdown nearby enemies",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Escapist": {
+    "effect": "On Mercy Kill: Gain a stack of Escapist, up to 9x. On taking fatal damage, consume 3 stacks to avoid death and become invulnerable for 12s.",
+    "ranks": 6,
+    "rarity": "Legendary"
+   },
+   "Arcane Expertise": {
+    "effect": "100% of Ability Strength modifiers are also applied to Max Shields.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Fury": {
+    "effect": "On Critical Hit: 60% chance for +180% Melee Damage to Melee Weapons for 18s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Grace": {
+    "effect": "On Health Damaged: 9% chance for +6% Health Regeneration/s for 9s",
+    "ranks": 6,
+    "rarity": "Legendary"
+   },
+   "Arcane Guardian": {
+    "effect": "On Damaged: 15% chance for +900 Armor for 20s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Healing": {
+    "effect": "+102% chance to resist a Radiation Status effect.",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Hot Shot": {
+    "effect": "Gain 6% weapon Critical Chance for 10s, when using abilities to inflict Heat Status effect on enemies. Maximum 50x stacks.",
+    "ranks": 6,
+    "rarity": "Legendary"
+   },
+   "Arcane Ice": {
+    "effect": "+102% chance to resist a Heat Status effect.",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Arcane Ice Storm": {
+    "effect": "On Enemy Frozen: Gain +2% Ability Strength and +2% Ability Duration for 15s. Stacks up to 20x.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Impetus": {
+    "effect": "Unique Status Effects from Abilities grant +6% Ability Strength and +3% Ability Efficiency for 20s.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Intention": {
+    "effect": "Gain +250 Max Health per active channeled ability.",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Momentum": {
+    "effect": "On Critical Hit: 60% chance for +150% Reload Speed to Sniper Rifles for 12s",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Arcane Nullifier": {
+    "effect": "+102% chance to resist a Magnetic Status effect.",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Arcane Persistence": {
+    "effect": "Remove all Shields. If Armor is above 700: Cannot be hit for more than 500 Damage/s. Magnetic Status and Ability Nullifying Effects disable this protection.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Phantasm": {
+    "effect": "On Block: 45% chance for +60% Speed for 18s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Pistoleer": {
+    "effect": "On Pistol Headshot Kill: 60% chance for +102% Ammo Efficiency for 12s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Power Ramp": {
+    "effect": "On Ability Cast: Next Ability cast gains +9% Ability Strength, stacking up to 4x. Resets when the same ability is recast consecutively.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Precision": {
+    "effect": "On Headshot: +300% Damage for 18s on Secondary Weapon",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Primary Charger": {
+    "effect": "On Melee Kill: 30% chance for +300% Primary Weapon Damage for 12s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Pulse": {
+    "effect": "On Health Pickup: 60% chance to restore 500 Health to allies within 25m 15s cooldown",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Rage": {
+    "effect": "On Headshot: 15% chance for +180% Damage to Primary Weapons for 24s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Reaper": {
+    "effect": "On Melee Kill: +24 Health Regen/s and +660 Armor for 10s.",
+    "ranks": 6,
+    "rarity": "Legendary"
+   },
+   "Arcane Resistance": {
+    "effect": "+102% chance to resist a Toxin Status effect.",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Rise": {
+    "effect": "On Reload: 60% chance for +150% Damage to Primary Weapons for 24s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Sculptor": {
+    "effect": "On creating an object with abilities: casts have 175% Ability Efficiency for 12s.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Steadfast": {
+    "effect": "On Ability Cast: 20% chance that the next three Abilities will not cost Energy.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Strike": {
+    "effect": "On Hit: 15% chance for +60% Attack Speed to Melee Weapons for 18s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Tanker": {
+    "effect": "On Archgun Equipped: +1,200 Armor for 60s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Tempo": {
+    "effect": "On Critical Hit: 15% chance for +90% Fire Rate to Shotguns for 12s",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Arcane Trickery": {
+    "effect": "On Finisher Kill: 15% chance to become invisible for 30s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Truculence": {
+    "effect": "When gaining 3,000 or more Overguard threshold, release a 30m Radial Attack that applies max Viral Status stacks.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Ultimatum": {
+    "effect": "On Finisher Kill: +1,200 Armor for 45s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Arcane Universal Fallout": {
+    "effect": "Each Radiation Status Effect inflicted on enemies by Abilities gives a 6% chance to drop a Universal Orb on enemy death.",
+    "ranks": 6,
+    "rarity": "Legendary"
+   },
+   "Arcane Velocity": {
+    "effect": "On Critical Hit: 90% chance for +120% Fire Rate to Pistols for 9s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Victory": {
+    "effect": "On Headshot Kill: 75% chance for +3% Health Regeneration/s for 9s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Arcane Warmth": {
+    "effect": "+102% chance to resist a Cold Status effect.",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Cascadia Accuracy": {
+    "effect": "On Roll: +300% Critical Chance on Weakpoint Hits for 4s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Cascadia Empowered": {
+    "effect": "On Status Effect: Deals +750 Damage matching the Damage Type of the Status Effect",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Cascadia Flare": {
+    "effect": "On Heat Status Effect: +12% Damage for 10s. Stacks up to 480%.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Cascadia Overcharge": {
+    "effect": "While Overshields Active: +300% Critical Chance",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Emergence Dissipate": {
+    "effect": "WHILE IN VOID SLING: Press to dissipate the endpoint in a 10m radius. Enemies hit create a short lived Void Mote that replenishes 10 Energy on pick up.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Emergence Renewed": {
+    "effect": "On Energy Depleted: Increase Energy Regeneration by 300% over 5s. Cooldown: 30s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Emergence Savior": {
+    "effect": "On Lethal Damage: Become invulnerable for 5s and recover 60% Health. Cooldown: 90s",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Exodia Brave": {
+    "effect": "On Heavy Attack Kill: +5 Energy Rate for 4s. Stacks up to 3x.",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Exodia Contagion": {
+    "effect": "After a Bullet Jump or Double Jump: Melee while Aim Gliding launches a projectile that explodes on impact",
+    "ranks": 4,
+    "rarity": "Legendary"
+   },
+   "Exodia Epidemic": {
+    "effect": "After a Bullet Jump or Double Jump: Slam emits a shockwave forwards that suspends enemies in the air for a short period",
+    "ranks": 4,
+    "rarity": "Legendary"
+   },
+   "Exodia Force": {
+    "effect": "On Status Effect: 50% chance to deal 200% Weapon Damage to enemies within 6m.",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Exodia Hunt": {
+    "effect": "On Ground Slam: 50% chance to pull enemies within 12m into melee range.",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Exodia Might": {
+    "effect": "On Finisher Kill: 50% chance for +30% Life Steal for 8s",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Exodia Triumph": {
+    "effect": "+50% Additional Combo Count Chance",
+    "ranks": 4,
+    "rarity": "Uncommon"
+   },
+   "Exodia Valor": {
+    "effect": "+200% Additional Combo Count Chance on Lifted enemies",
+    "ranks": 4,
+    "rarity": "Uncommon"
+   },
+   "Magus Accelerant": {
+    "effect": "On Void Sling: Reduce Enemy Resistance to Heat Damage by 65%.",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Magus Aggress": {
+    "effect": "On Warframe Melee Transference: Heavy Blades deal +300% Critical Damage for 4 consecutive attacks. Cooldown 20s.",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Magus Anomaly": {
+    "effect": "On Transference In: Enemies within 30m are pulled towards Warframe.",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Magus Cadence": {
+    "effect": "On Void Sling: +90% Sprint Speed for 12s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Magus Cloud": {
+    "effect": "On Void Mode: +300% Void Sling Radius for 6s",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Magus Destruct": {
+    "effect": "On Void Sling: Reduce Enemy Resistance to Puncture Damage by 65%.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Magus Drive": {
+    "effect": "On Transference In: Increase K-Drive Speed by 150% for 30s.",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Magus Elevate": {
+    "effect": "On Transference In: 95% chance to restore 300 Health to Warframe",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Magus Firewall": {
+    "effect": "On Void Mode: Generate Void Particles every 1s up to 6 particles, each granting 12.5% Damage Reduction for 60s. Taking damage consumes a particle.",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Magus Glitch": {
+    "effect": "On Transference Static: 102% chance to negate Transference Static.",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Magus Husk": {
+    "effect": "On Transference Out: +300 Armor",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Magus Lockdown": {
+    "effect": "On Void Sling: Drop a mine that tethers up to 10 enemies in 15m for 4s.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Magus Melt": {
+    "effect": "On Void Sling: Increase Heat Damage in Operator Mode by 30% for 15s, stacking up to 7x.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Magus Nourish": {
+    "effect": "While An Operator: Restores 35 Health/s to Warframe.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Magus Overload": {
+    "effect": "On Void Sling: Stun robotic enemies for 3s, which then discharge Electricity Damage dealing 80% of their Max Health to anyone within 25m.",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Magus Repair": {
+    "effect": "On Void Mode: Heal Warframes within 30m by 25% Health/s.",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Magus Replenish": {
+    "effect": "On Void Sling: Heal 30% Health",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Magus Revert": {
+    "effect": "On Void Sling: Use again within 3s, to return the Operator to their original position at no energy cost. Restores 60 Health. 3s cooldown.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Magus Vigor": {
+    "effect": "On Transference Out: +600 Health",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Melee Afflictions": {
+    "effect": "Enemies affected by Status Effects gain 6 additional stacks when they're knocked down or flung by melee attacks.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Melee Animosity": {
+    "effect": "On Melee Hit: Gain 42% Critical Chance on your next Heavy Attack, up to 420%",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Melee Assimilation": {
+    "effect": "On Shield Break: +150% Melee Damage on Heavy Attack and Heavy Attack kills restore +30% of max Shields for 20s.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Melee Careen": {
+    "effect": "x2.50 Melee Damage against Frozen enemies. On Roll: Freeze enemies in a 5.5m radius with a 2s Cooldown.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Melee Crescendo": {
+    "effect": "On Finisher Kill: Gain 6 Initial Combo for the rest of your mission",
+    "ranks": 6,
+    "rarity": "Legendary"
+   },
+   "Melee Doughty": {
+    "effect": "Gain 1.0x Critical Damage for every 10% Puncture Status chance on your Melee Weapon.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Melee Duplicate": {
+    "effect": "On Base Critical Hits: 100% chance for your attack to strike a second time",
+    "ranks": 6,
+    "rarity": "Legendary"
+   },
+   "Melee Elementalist": {
+    "effect": "+90% Status Damage · +60% Heavy Attack Wind Up Speed",
+    "ranks": 6,
+    "rarity": "Uncommon"
+   },
+   "Melee Exposure": {
+    "effect": "On Ability Cast: Gain 60% Corrosive Damage on Melee strikes for 25s. Stacks up to 240%.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Melee Fortification": {
+    "effect": "On Melee Kill: +210 Armor for 10s",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Melee Guidance": {
+    "effect": "You lose 6s Melee Combo Duration Squadmates gain 12s Melee Combo Duration",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Melee Influence": {
+    "effect": "On Melee Electricity Status: 20% chance for elemental Melee Status Effects to apply to enemies within 20m for 18s. Cannot refresh while active.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Melee Prowess": {
+    "effect": "+90% Status Chance",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Melee Retaliation": {
+    "effect": "Gain 30% Melee Damage for every 200 current Shields, up to 420%. Bonus halved for Overshields.",
+    "ranks": 6,
+    "rarity": "Common"
+   },
+   "Melee Vortex": {
+    "effect": "Kill an enemy affected by Magnetic Status for a 45% chance to pull in enemies within 18m radius",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Molt Augmented": {
+    "effect": "On Kill: +0.24% Ability Strength. Stacks up to 250x.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Molt Efficiency": {
+    "effect": "While Shields are Active: Gain 6% Ability Duration per second, up to a maximum of 36%",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Molt Reconstruct": {
+    "effect": "Heal yourself and allies within Affinity Range 6 Health for each Energy point spent on the initial casting cost of abilities.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Molt Vigor": {
+    "effect": "On Operator Ability: 45% Ability Strength on next Warframe Ability Cast",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Pax Bolt": {
+    "effect": "On Headshot Kill: +30% Ability Efficiency and +30% Ability Strength on the next Ability used within 4s.",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Pax Charge": {
+    "effect": "Battery Recharge Delay is reduced by +50%",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Pax Seeker": {
+    "effect": "On Headshot Kill: 4 projectiles burst from the target and seek the heads of nearby enemies.",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Pax Soar": {
+    "effect": "+50% Accuracy while Airborne · -50% Weapon Recoil while Airborne · +5s Aim Glide/Wall Latch Duration",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Primary Acuity": {
+    "effect": "+350% Weak Point Damage · +350% Weak Point Critical Chance. Multishot cannot be modified.",
+    "ranks": 11,
+    "rarity": "Rare"
+   },
+   "Primary Blight": {
+    "effect": "On Toxin Status Effect: +3.6% Critical Damage and +1.8% Multishot for 12s. Stacks up to 40x.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Bulwark": {
+    "effect": "Gain +1% damage for each unit of armor past 1,000, up to a max of +500%.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Compression": {
+    "effect": "On aim: x0.2 explosion radius, +100% damage and +5.5% ammo efficiency for every 1m radius lost.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Crux": {
+    "effect": "On Weak Point Hit: Gain +30% Status Chance and +6% Ammo Efficiency for 10s. Stacks up to 10x.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Deadhead": {
+    "effect": "On Headshot Kill: +120% Damage for 24s. Stacks up to 3x. +30% to Headshot Multiplier -50% Weapon Recoil · +30% to Headshot Multiplier · -50% Weapon Recoil",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Debilitate": {
+    "effect": "If an enemy has 10 stacks of a combined Status Effect, inflicting the same Status Effect again has a 100% chance to inflict one of the base Status Effects it is composed of.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Dexterity": {
+    "effect": "On Melee Kill: +60% Damage for 20s. Stacks up to 6x. +7.5s Combo Duration · +7.5s Combo Duration",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Exhilarate": {
+    "effect": "On Weapon Impact Status Effect: +1.2 Energy Regen/s for 10s. Stacks up to 3x.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Frostbite": {
+    "effect": "On Cold Status Effect: +3% Critical Damage and +2.25% Multishot for 12s. Stacks up to 40x.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Merciless": {
+    "effect": "On Kill: +30% Damage for 4s. Stacks up to 12x. +30% Reload Speed · +30% Reload Speed",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Obstruct": {
+    "effect": "On Weapon Magnetic Status Effect: Enemy weapons jam within 15m of target. Cooldown 10s.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Overcharge": {
+    "effect": "While at or above 90% Energy: Gain 35% of Max Energy as Multishot, capped at 350%.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Primary Plated Round": {
+    "effect": "On Reload: Deal increased damage per round loaded based on max magazine size. Lasts for 10s.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Residual Boils": {
+    "effect": "On Kitgun Kill: 20% chance to spawn volatile hives for 12s that explode when enemies approach for 80 Heat Damage in 10m. Standing in the area applies Heat Damage type to Theorem Arcanes.",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Residual Malodor": {
+    "effect": "On Kitgun Kill: 20% chance to create a frigid mist for 12s, dealing 40 Cold Damage/s. Standing in the area applies Cold Damage to Theorem Arcanes.",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Residual Shock": {
+    "effect": "On Kitgun Kill: 20% chance to spawn an electrified spike for 12s, dealing 200 Electricity Damage to enemies within 10m. Standing in the area applies Electricity Damage to Theorem Arcanes.",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Residual Viremia": {
+    "effect": "On Kitgun Kill: 20% chance to create pool of toxic blood for 12s, dealing 40 Toxin Damage/s. Standing in the area applies the Toxin Damage to Theorem Arcanes.",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Secondary Cryogenic": {
+    "effect": "On Puncture: Apply 3 Cold stacks on targets within 15m.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Deadhead": {
+    "effect": "On Precision Headshot Kill: +120% Damage for 24s. Stacks up to 3x. +30% to Headshot Multiplier -50% Weapon Recoil · +30% to Headshot Multiplier · -50% Weapon Recoil",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Dexterity": {
+    "effect": "On Melee Kill: +60% Damage for 20s. Stacks up to 6x. +7.5s Combo Duration · +7.5s Combo Duration",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Encumber": {
+    "effect": "On Status Effect: +24% chance to trigger a second random Status Effect.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Enervate": {
+    "effect": "On Hit: Increase Critical Chance by 10%. Resets after 6 Big Critical Hit.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Fortifier": {
+    "effect": "Gain 1 Overguard for every 100 Damage dealt to an enemy's Overguard. Deals x8 Extra Damage to Overguard. · Deals x8 Extra Damage to Overguard.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Irradiate": {
+    "effect": "On hitting enemies afflicted by 10 stacks of Radiation: Deal 180% of the hit damage to enemies within 7m.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Kinship": {
+    "effect": "While Buffing Ally Warframes: +20% Critical Chance per buff",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Merciless": {
+    "effect": "On Kill: +30% Damage for 4s. Stacks up to 12x. +30% Reload Speed · +30% Reload Speed",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Outburst": {
+    "effect": "On swapping to Secondary Weapon, consume all Combo Multipliers to increase Secondary Weapon Critical Chance and Critical Damage by 20% per Combo consumed for 30s.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Shiver": {
+    "effect": "Enemies take +45% damage per Cold Status",
+    "ranks": 6,
+    "rarity": "Legendary"
+   },
+   "Secondary Surge": {
+    "effect": "On Ability Cast: Next shot gains a Damage Multiplier for every 200 current Energy, up to x8.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Secondary Wind": {
+    "effect": "On Kill: +50% Reload Speed for 4s",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Theorem Contagion": {
+    "effect": "Standing in a zone created by a Residual Arcane creates a globe that orbits the player every 2s. The globes will strike the nearest enemy within 15m dealing 150 damage increasing their vulnerability to the globe's damage type by 200% for 6s. Globes will persist for 30s upon leaving the zone.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Theorem Demulcent": {
+    "effect": "Standing in a zone created by a Residual Arcane increases weapon damage by 12%/s stacking up to 15x. Effect persists for 20s upon leaving the zone.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Theorem Infection": {
+    "effect": "Standing in a zone created by a Residual Arcane increases damage of companions and summoned allies within 90m by 24%/s stacking up to 15x. Effect persists for 20s upon leaving the zone.",
+    "ranks": 6,
+    "rarity": "Rare"
+   },
+   "Virtuos Forge": {
+    "effect": "On Hit: Converts 98% Void Damage to Heat Damage.",
+    "ranks": 4,
+    "rarity": "Uncommon"
+   },
+   "Virtuos Fury": {
+    "effect": "On Status Effect: 20% chance for +30% Damage for 4s",
+    "ranks": 4,
+    "rarity": "Uncommon"
+   },
+   "Virtuos Ghost": {
+    "effect": "On Headshot: 40% chance for +60% Status Chance for 12s",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Virtuos Null": {
+    "effect": "On Kill: +20% Amp Energy Regeneration for 4s",
+    "ranks": 4,
+    "rarity": "Common"
+   },
+   "Virtuos Shadow": {
+    "effect": "On Headshot: 40% chance for +60% Critical Chance for 12s",
+    "ranks": 4,
+    "rarity": "Rare"
+   },
+   "Virtuos Spike": {
+    "effect": "On Hit: Converts 98% Void Damage to Puncture Damage.",
+    "ranks": 4,
+    "rarity": "Common"
+   },
+   "Virtuos Strike": {
+    "effect": "On Critical Hit: 20% chance for +80% Critical Damage for 4s",
+    "ranks": 4,
+    "rarity": "Uncommon"
+   },
+   "Virtuos Surge": {
+    "effect": "On Hit: Converts 98% Void Damage to Electricity Damage.",
+    "ranks": 4,
+    "rarity": "Common"
+   },
+   "Virtuos Tempo": {
+    "effect": "On Kill: 60% chance for +60% Fire Rate for 8s",
+    "ranks": 4,
+    "rarity": "Common"
+   },
+   "Virtuos Trojan": {
+    "effect": "On Hit: Converts 98% Void Damage to Viral Damage.",
+    "ranks": 4,
+    "rarity": "Uncommon"
+   }
+  },
+  "effects_source": "api.warframestat.us /items/<name> levelStats, max rank — cross-checked against the wiki for Arcane Energize, Guardian, Aegis and Molt Augmented",
+  "operator_names": [
+   "Emergence Dissipate",
+   "Emergence Renewed",
+   "Emergence Savior"
+  ],
+  "classification_note": "Warframe list is the wiki's Arcane Enhancement table plus Persistence, Ultimatum and Warmth (frame stats in their own effect text) and the three Theorem arcanes (wiki: Theorem Demulcent is a Warframe arcane). Emergence are Operator arcanes (wiki: Emergence Savior). The four Molt arcanes are included by name as well as by prefix: each names a Warframe stat (Ability Strength, Ability Duration, ally healing, Warframe Ability Cast) in its own effect text."
+ }
+}
